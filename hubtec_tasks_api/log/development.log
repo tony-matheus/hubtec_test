@@ -2715,3 +2715,180 @@ Unpermitted parameter: :session
 Completed 200 OK in 588ms (Views: 0.2ms | ActiveRecord: 7.3ms)
 
 
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 13:27:43 +0000
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"tony@teste2.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"tony teste2", "registration"=>{"email"=>"tony@teste2.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"tony teste2"}}
+Unpermitted parameters: :name, :registration
+Unpermitted parameters: :name, :registration
+Unpermitted parameters: :name, :registration
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (4.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "tony@teste2.com"], ["provider", "email"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "tony@teste2.com"], ["encrypted_password", "$2a$11$IdFZZpigKIovAAxNWzI0hew2xjgKzyYZwu9wU5BNE5vef1WIU4Ii."], ["email", "tony@teste2.com"], ["tokens", "{}"], ["created_at", "2019-06-20 13:27:43.594661"], ["updated_at", "2019-06-20 13:27:43.594661"]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"JoN2o7KT4KuxWVJsuX8khA\":{\"token\":\"$2a$12$my4I9LuRUt4ywte97PqBGeLLhliHJf5M1AWqEZbbo6fE/MWU81EYC\",\"expiry\":1562246863}}"], ["updated_at", "2019-06-20 13:27:43.827063"], ["id", 2]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"JoN2o7KT4KuxWVJsuX8khA\":{\"token\":\"$2a$12$sptbCK0M8fdPp5sbd5X30OlapSt5iRxBanfooqerKmKhRpFQwebxy\",\"expiry\":1562246863,\"last_token\":\"$2a$12$my4I9LuRUt4ywte97PqBGeLLhliHJf5M1AWqEZbbo6fE/MWU81EYC\",\"updated_at\":\"2019-06-20T13:27:43.841Z\"}}"], ["updated_at", "2019-06-20 13:27:44.063783"], ["id", 2]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 698ms (Views: 0.6ms | ActiveRecord: 15.6ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 13:29:10 +0000
+  
+ActionController::RoutingError (undefined method `before_filter' for ApplicationController:Class
+Did you mean?  before_action):
+  
+app/controllers/application_controller.rb:3:in `<class:ApplicationController>'
+app/controllers/application_controller.rb:1:in `<top (required)>'
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 13:29:44 +0000
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"tony@teste3.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"tony teste3", "registration"=>{"email"=>"tony@teste3.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"tony teste3"}}
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "tony@teste3.com"], ["provider", "email"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["uid", "tony@teste3.com"], ["encrypted_password", "$2a$11$cdluYAWhcLRoiaHW1GaloO8aablIL7CrCG8vxdmFId2U35o5qQJka"], ["name", "tony teste3"], ["email", "tony@teste3.com"], ["tokens", "{}"], ["created_at", "2019-06-20 13:29:44.488830"], ["updated_at", "2019-06-20 13:29:44.488830"]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"xEGDKQX5JpZkiQ0Qmciq-Q\":{\"token\":\"$2a$12$gIHFHz3UXz3KX87uxTmjfuH9LF7GTw9JRffnVlcuQ80deZWkH4K0W\",\"expiry\":1562246984}}"], ["updated_at", "2019-06-20 13:29:44.714015"], ["id", 3]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.4ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"xEGDKQX5JpZkiQ0Qmciq-Q\":{\"token\":\"$2a$12$Edt2e1v7VpmrCatBZW5oQuOGJzbvua20YRQzzrUtqvQhfCZEc3AKq\",\"expiry\":1562246984,\"last_token\":\"$2a$12$gIHFHz3UXz3KX87uxTmjfuH9LF7GTw9JRffnVlcuQ80deZWkH4K0W\",\"updated_at\":\"2019-06-20T13:29:44.725Z\"}}"], ["updated_at", "2019-06-20 13:29:44.943813"], ["id", 3]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 590ms (Views: 0.3ms | ActiveRecord: 10.5ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 14:05:12 +0000
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by DeviseTokenAuth::RegistrationsController#create as HTML
+  Parameters: {"registration"=>{}}
+Unpermitted parameter: :registration
+Filter chain halted as :validate_sign_up_params rendered or redirected
+Completed 422 Unprocessable Entity in 66ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 14:07:03 +0000
+Processing by DeviseTokenAuth::RegistrationsController#create as HTML
+  Parameters: {"registration"=>{}}
+Unpermitted parameter: :registration
+Filter chain halted as :validate_sign_up_params rendered or redirected
+Completed 422 Unprocessable Entity in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 14:07:35 +0000
+Processing by DeviseTokenAuth::RegistrationsController#create as HTML
+  Parameters: {"registration"=>{}}
+Unpermitted parameter: :registration
+Filter chain halted as :validate_sign_up_params rendered or redirected
+Completed 422 Unprocessable Entity in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 14:09:02 +0000
+Processing by DeviseTokenAuth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"mantony0148@icloud.com", "email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "registration"=>{"name"=>"mantony0148@icloud.com", "email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (4.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mantony0148@icloud.com"], ["provider", "email"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Create (4.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["uid", "mantony0148@icloud.com"], ["encrypted_password", "$2a$11$4cj7ZM8EJrrhZiAs5o9fuuVvsYOHgz9dkczfVNRuWX5bhpJdV5m3q"], ["name", "mantony0148@icloud.com"], ["email", "mantony0148@icloud.com"], ["tokens", "{}"], ["created_at", "2019-06-20 14:09:03.091421"], ["updated_at", "2019-06-20 14:09:03.091421"]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"huJovtA3lGne4XFPwtnbxQ\":{\"token\":\"$2a$12$83gqm8lIFkblf4hT/JxjX.Ory9EJ65b/e8zEEs.hOkD7lWXaoYjNa\",\"expiry\":1562249343}}"], ["updated_at", "2019-06-20 14:09:03.324951"], ["id", 4]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"huJovtA3lGne4XFPwtnbxQ\":{\"token\":\"$2a$12$JMl46xMHkmNmCQJdv8Mh1.JYuURoQLs2FQf91srIQvVS8IE.mjrj.\",\"expiry\":1562249343,\"last_token\":\"$2a$12$83gqm8lIFkblf4hT/JxjX.Ory9EJ65b/e8zEEs.hOkD7lWXaoYjNa\",\"updated_at\":\"2019-06-20T14:09:03.341Z\"}}"], ["updated_at", "2019-06-20 14:09:03.559032"], ["id", 4]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 665ms (Views: 0.3ms | ActiveRecord: 29.3ms)
+
+
+Started POST "/auth" for 172.19.0.1 at 2019-06-20 14:09:08 +0000
+Processing by DeviseTokenAuth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"mantony0148@icloud.com", "email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "registration"=>{"name"=>"mantony0148@icloud.com", "email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+Unpermitted parameter: :registration
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mantony0148@icloud.com"], ["provider", "email"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 422 Unprocessable Entity in 120ms (Views: 0.3ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/auth/sign_in" for 172.19.0.1 at 2019-06-20 14:25:46 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]", "session"=>{"email"=>"mantony0148@icloud.com", "password"=>"[FILTERED]"}}
+Unpermitted parameter: :session
+Unpermitted parameter: :session
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mantony0148@icloud.com"], ["provider", "email"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Unpermitted parameter: :session
+Unpermitted parameter: :session
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"huJovtA3lGne4XFPwtnbxQ\":{\"token\":\"$2a$12$JMl46xMHkmNmCQJdv8Mh1.JYuURoQLs2FQf91srIQvVS8IE.mjrj.\",\"expiry\":1562249343,\"last_token\":\"$2a$12$83gqm8lIFkblf4hT/JxjX.Ory9EJ65b/e8zEEs.hOkD7lWXaoYjNa\",\"updated_at\":\"2019-06-20T14:09:03.341Z\"},\"6zqL4Azt1zmeeqlvtEyivA\":{\"token\":\"$2a$12$6o/WHuIC9sGe3Nr1PlAq/.7JSFGUGSArF2uBC15i8XQK.OdX1DLX.\",\"expiry\":1562250347}}"], ["updated_at", "2019-06-20 14:25:47.444443"], ["id", 4]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.4ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"huJovtA3lGne4XFPwtnbxQ\":{\"token\":\"$2a$12$JMl46xMHkmNmCQJdv8Mh1.JYuURoQLs2FQf91srIQvVS8IE.mjrj.\",\"expiry\":1562249343,\"last_token\":\"$2a$12$83gqm8lIFkblf4hT/JxjX.Ory9EJ65b/e8zEEs.hOkD7lWXaoYjNa\",\"updated_at\":\"2019-06-20T14:09:03.341Z\"},\"6zqL4Azt1zmeeqlvtEyivA\":{\"token\":\"$2a$12$T3jrthbENgfb5MH9uVA8uerPR8t3wOiv0M0EhpLcayk.b.u8s4L9S\",\"expiry\":1562250347,\"last_token\":\"$2a$12$6o/WHuIC9sGe3Nr1PlAq/.7JSFGUGSArF2uBC15i8XQK.OdX1DLX.\",\"updated_at\":\"2019-06-20T14:25:47.463Z\"}}"], ["updated_at", "2019-06-20 14:25:47.666998"], ["id", 4]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 561ms (Views: 1.6ms | ActiveRecord: 7.1ms)
+
+

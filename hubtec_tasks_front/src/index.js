@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 import Global from './styles/settings/';
 import Reset from './styles/generic';
 import Base from './styles/generic';
+
+
+import { Provider } from 'react-redux';
+import Store, { history } from './configureStore';
+import { ConnectedRouter } from 'react-router-redux'
 
 ReactDOM.render(
     <Fragment>
@@ -15,7 +19,9 @@ ReactDOM.render(
         <Global.Size/>
         <Base/>
         <Reset/>
-        <App />
+        <Provider store={Store}>
+            <App />
+        </Provider>
     </Fragment>
     , document.getElementById('root'));
 
