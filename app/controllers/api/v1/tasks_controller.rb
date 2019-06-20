@@ -1,8 +1,7 @@
 module Api::V1
   class TasksController < Api::ApiController
     before_action :authenticate_user!
-    before_action :set_task, only: %i[ show update destroy ]
-
+    before_action :set_task, only: %i[update destroy]
 
     def index
       render json: Task.find_user_tasks(current_user.id)

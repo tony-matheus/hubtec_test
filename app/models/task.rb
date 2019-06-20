@@ -6,7 +6,7 @@ class Task < ApplicationRecord
 
   default_scope -> { where(deleted_at: nil) }
 
-  enum status: [:to_do, :in_progress, :done]
+  enum status: %i[to_do in_progress done]
 
   def soft_delete
     update(deleted_at: Time.current) if self.deleted_at.nil?
@@ -21,15 +21,15 @@ class Task < ApplicationRecord
   end
 
   def self.find_to_do(user_id)
-    self.where("status = ? AND user_id = ?", 0, user_id)
+    self.where('status = ? AND user_id = ?', 0, user_id)
   end
 
   def self.find_in_progress(user_id)
-    self.where("status = ? AND user_id = ?", 1, user_id)
+    self.where('status = ? AND user_id = ?', 1, user_id)
   end
 
   def self.find_done(user_id)
-    self.where("status = ? AND user_id = ?", 2 , user_id)
+    self.where('status = ? AND user_id = ?', 2, user_id)
   end
 
   private
