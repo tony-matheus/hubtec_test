@@ -40,7 +40,7 @@ group :development, :test do
   gem 'ffaker'
   # Test framework
   gem 'rspec-rails', '~> 3.5'
-  # gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   # Rspec test auxiliar gem
   gem 'rspec-json_expectations'
   gem 'pry'
