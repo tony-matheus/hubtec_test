@@ -38,7 +38,7 @@ export default class SignUpForm extends Component {
             <FormCenter>
                 <FormFields onSubmit={this.handleSubmit}>
                     <FormField>
-                        <FormFieldLabel htmlFor="name"> Full Name </FormFieldLabel>
+                        <FormFieldLabel white htmlFor="name"> Full Name </FormFieldLabel>
                         <FormFieldInput
                             type="text"
                             id="name"
@@ -49,7 +49,7 @@ export default class SignUpForm extends Component {
                     </FormField>
 
                     <FormField>
-                        <FormFieldLabel htmlFor="email"> Email </FormFieldLabel>
+                        <FormFieldLabel white htmlFor="email"> Email </FormFieldLabel>
                         <FormFieldInput
                             type="email"
                             id="email"
@@ -60,7 +60,7 @@ export default class SignUpForm extends Component {
                     </FormField>
 
                     <FormField>
-                        <FormFieldLabel htmlFor="password"> Password </FormFieldLabel>
+                        <FormFieldLabel white htmlFor="password"> Password </FormFieldLabel>
                         <FormFieldInput
                             type="password"
                             id="password"
@@ -71,7 +71,7 @@ export default class SignUpForm extends Component {
                     </FormField>
 
                     <FormField>
-                        <FormFieldLabel htmlFor="password_confirmation"> Password Confirmation </FormFieldLabel>
+                        <FormFieldLabel white htmlFor="password_confirmation"> Password Confirmation </FormFieldLabel>
                         <FormFieldInput
                             type="password"
                             id="password_confirmation"
@@ -81,7 +81,7 @@ export default class SignUpForm extends Component {
                             onChange={this.handleChange}/>
                     </FormField>
                     <FormField>
-                        <FormFieldButton >Sign Up</FormFieldButton>
+                        <FormFieldButton primary type="submit">Sign Up</FormFieldButton>
                     </FormField>
                 </FormFields>
             </FormCenter>

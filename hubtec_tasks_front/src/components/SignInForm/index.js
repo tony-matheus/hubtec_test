@@ -17,11 +17,11 @@ import './style.css'
 export default class SignInForm extends Component {
 
     constructor(){
-        super()
+        super();
         this.state = {
             email: "",
             password: ""
-        }
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,7 +49,7 @@ export default class SignInForm extends Component {
                 <LocalForm  className="FormFields" onSubmit={this.handleSubmit}>
                     <FormLogin>
                         <FormField>
-                            <FormFieldLabel htmlFor="email">E-Mail Address</FormFieldLabel>
+                            <FormFieldLabel white  htmlFor="email">E-Mail Address</FormFieldLabel>
                             <FormFieldInput
                                 type="email"
                                 id="email"
@@ -61,7 +61,7 @@ export default class SignInForm extends Component {
                         </FormField>
 
                         <FormField>
-                            <FormFieldLabel htmlFor="password">Password</FormFieldLabel>
+                            <FormFieldLabel white  htmlFor="password">Password</FormFieldLabel>
                             <FormFieldInput
                                 type="password"
                                 id="password"
@@ -73,7 +73,7 @@ export default class SignInForm extends Component {
                         </FormField>
                     </FormLogin>
                     <FormField>
-                        <FormFieldButton type="submit" >Sign In</FormFieldButton>
+                        <FormFieldButton primary type="submit" >Sign In</FormFieldButton>
                         <Link to="/Login" className="FormField__Link">Create an account</Link>
                     </FormField>
                 </LocalForm>

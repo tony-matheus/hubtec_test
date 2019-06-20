@@ -1,5 +1,5 @@
 import API from '../../../api';
-import {setHeaders } from '../../../helpers/session';
+import {setHeaders, BASE_FRONT_URL } from '../../../helpers/session';
 // import { push } from 'react-router-redux'
 
 export function signIn({email, password}) {
@@ -10,6 +10,7 @@ export function signIn({email, password}) {
             .then((response)=>{
                 console.log(response.headers)
                 setHeaders(response.headers);
+                window.location.replace(BASE_FRONT_URL+"/dashboard")
             })
             .catch((error)=>{
                 window.Materialize.toast('User or password incorrect', 4000, 'red');

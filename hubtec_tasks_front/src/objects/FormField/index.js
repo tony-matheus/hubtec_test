@@ -1,5 +1,34 @@
 import styled from 'styled-components';
+import {Button} from 'react-materialize'
+import {Card} from 'react-materialize';
 
+const FixedButton = styled(Button)`
+  position: fixed;
+  top: 0;
+  right: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  color: white;
+`;
+
+const CardForm = styled(Card)`
+    display: ${props => props.hide ? "none" : "unset"} !important;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    left: 25%;
+    position: fixed;
+    z-index: 1;
+`;
+
+const ListFields = styled.div`
+  display: inline-block;
+`
 
 const FormCenter = styled.div`
   margin-bottom: 100px;
@@ -12,6 +41,8 @@ const FormTitle = styled.div`
 `;
 
 const FormFields = styled.form`
+
+  color: ${props => props.white ? "white" : "black"} !important;
 `;
 
 const FormLogin = styled.div`
@@ -40,7 +71,7 @@ const FormFieldLabel = styled.label`
   display: block;
   text-transform: uppercase;
   font-size: .8em;
-  color: white;
+  color: ${props => props.white ? "white" : "black"};
 `;
 
 const FormFieldInput = styled.input`
@@ -60,7 +91,7 @@ const FormFieldInput = styled.input`
 `;
 
 const FormFieldButton = styled.button`
-  background-color: #52C4B9;
+  background-color: ${props => props.primary ? "#52C4B9" : "#5b5b5b"};;
   color: white;
   border: none;
   outline: none;
@@ -89,4 +120,18 @@ const FormFieldTermsLink = styled.a`
 `;
 
 
-export {FormCenter, FormTitle, FormFields, FormButtonField, FormField, FormFieldLabel, FormFieldInput, FormFieldButton, FormFieldCheckbox, FormFieldTermsLink, FormLogin}
+export {FormCenter,
+    FormTitle,
+    FormFields,
+    FormButtonField,
+    FormField,
+    FormFieldLabel,
+    FormFieldInput,
+    FormFieldButton,
+    FormFieldCheckbox,
+    FormFieldTermsLink,
+    FormLogin,
+    FixedButton,
+    CardForm,
+    ListFields
+}
