@@ -66,14 +66,7 @@ export function deleteTask({id, status}){
     }
 }
 
-export function update_task_status({id, status, old_status}){
-    console.log(id, status);
-    const task = {
-        task: {
-            status: status
-        }
-    };
-
+export function update_task_status({id, task}, old_status = ""){
     const headers = getHeaders();
     const request = API.put('/api/v1/tasks/'+id, task, {headers: headers});
     return(dispatch) => {
@@ -81,16 +74,8 @@ export function update_task_status({id, status, old_status}){
             .then((response) => {
                 console.log(response.data.status);
                 setHeaders(response.headers);
-                switch (response.data.status) {
-                    case "to_do":
-                        dispatch({ type: ADD_TO_DO, payload: response.data });
-                        break;
-                    case "in_progress":
-                        dispatch({ type: ADD_IN_PROGRESS, payload: response.data });
-                        break;
-                    case "done":
-                        dispatch({ type: ADD_DONE, payload: response.data });
-                        break;
+                if(old_status == "") {
+                    old_status = task.status
                 }
                 switch (old_status) {
                     case "to_do":
@@ -103,6 +88,18 @@ export function update_task_status({id, status, old_status}){
                         dispatch({ type: DELETE_DONE, payload: id });
                         break;
                 }
+                switch (response.data.status) {
+                    case "to_do":
+                        dispatch({ type: ADD_TO_DO, payload: response.data });
+                        break;
+                    case "in_progress":
+                        dispatch({ type: ADD_IN_PROGRESS, payload: response.data });
+                        break;
+                    case "done":
+                        dispatch({ type: ADD_DONE, payload: response.data });
+                        break;
+                }
+
                 // dispatch({ type: ADD_TASK, payload: response.data })
             })
             .catch((error) => {

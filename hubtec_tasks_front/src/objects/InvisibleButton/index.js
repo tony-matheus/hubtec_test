@@ -13,6 +13,7 @@ const InvisibleButton = styled.button`
   border: solid 1px black;
   text-align: center;
   line-height: 10px;
+  margin-right: 5px;
 
   display: ${props => props.hide ? "none" : "unset"} !important;
   &:hover {
