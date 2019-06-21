@@ -14181,3 +14181,49 @@ Processing by Api::V1::TasksController#index as HTML
 Completed 200 OK in 493ms (Views: 7.1ms | ActiveRecord: 6.4ms)
 
 
+Started GET "/api/v1/tasks" for 172.19.0.1 at 2019-06-21 01:30:00 +0000
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mantony0148@icloud.com"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 0 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 1 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 2 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"4Voi4HztBj3iRsuxsiKPKA\":{\"token\":\"$2a$12$yYx8YQ2lld/COhLL9OX6jeJS5iUn17kmL3hmyPRprVCWF.4ki7tY6\",\"expiry\":1562269904,\"last_token\":\"$2a$12$bX5drk72MzN47bl4nQWyv.a1TtFQbiWrmYYSAKdScBEv9rfrXWYz.\",\"updated_at\":\"2019-06-20T19:51:44.955Z\"},\"VeyPyuSuQ8vfkaDLTInsqg\":{\"token\":\"$2a$12$bT5800vUSqHRm5ciQqGn0uaL1Hsl2KuWnB/1iYKA8y2czpVOewAsa\",\"expiry\":1562271863,\"last_token\":\"$2a$12$o3exDnWLuIKvc/CPyWr3.u0z9Wf68k2Rt4L.pX35raRXWUUka83j6\",\"updated_at\":\"2019-06-20T20:24:23.799Z\"},\"TcKUgMGYpv68dLIkLNDW0w\":{\"token\":\"$2a$12$j98YJurziOg9WwvufevBZOxTz7L06lIVAc6qAW0gxaHImEgU4YTG6\",\"expiry\":1562276130,\"last_token\":\"$2a$12$FXqcxJG.BANAiU/7jMi9duiRsDGZxzphGAhEMHLmnWyvRsgdU2DQa\",\"updated_at\":\"2019-06-20T21:35:33.656Z\"},\"pjFb_yR83CvFeuf5n9i6CA\":{\"token\":\"$2a$12$BDlmO9x1vZNGDh1maUJTZ.fWRnTWgTl0Z/CUv7QLzMljERxr7exia\",\"expiry\":1562276851,\"last_token\":\"$2a$12$KfoWtEdsMHUtLwE1dwdt0OvOB3k3bwYT8Vij2qw.b2nJr/7pzfiTW\",\"updated_at\":\"2019-06-20T21:47:31.123Z\"},\"BTmY9F6bwLi1LQVa9hJy5Q\":{\"token\":\"$2a$12$SgIGj.P8pamDJaeQbABmE.jSLf2khIUm1yajJ.kpvPLOg/UUO1bZa\",\"expiry\":1562276943,\"last_token\":\"$2a$12$GdESOMSsqNHLav3lC7qZPuSLK85sGLLmJg0Z.GV7frZHJt7m2P0n2\",\"updated_at\":\"2019-06-20T21:49:03.115Z\"},\"rcHnW7ZM4iMtRibF6TqnaA\":{\"token\":\"$2a$12$FG0Ef5.wzmWJUAtcxuiLje9/IPWPE0Kb2giTaJlH/nLQTXrmp1a36\",\"expiry\":1562277026,\"last_token\":\"$2a$12$cxkaJkmkSJn.p6p7fv5rcuejhOHovwV0vNFAxsStFPWRyiDGom/oC\",\"updated_at\":\"2019-06-20T21:50:26.090Z\"},\"ndD2VlnGaJAreXIhM3g16A\":{\"token\":\"$2a$12$KUWcexcZV/fXCa6pt5dIJe0.CeHyQNkCoazjIWZzp.obP4jAlc88K\",\"expiry\":1562278036,\"last_token\":\"$2a$12$cfDr2ABRKdxOE/WTzJQL7uBdJJoKqYYFdKhIU7BQQ9W5NvNTCCUOK\",\"updated_at\":\"2019-06-20T22:07:16.865Z\"},\"EyOR03huy20jEGndZq4gfQ\":{\"token\":\"$2a$12$jdzbti2byavELYG7dPhET.7UUe/U5EmBH6XXD9SWpzdKWd0Ojsrc6\",\"expiry\":1562281268,\"last_token\":\"$2a$12$mprMnrYABjJ5kSdZQZcAi.tqFYPrYkW8d49ffXMncYSklA4gdZmz.\",\"updated_at\":\"2019-06-20T23:01:08.511Z\"},\"bwMjQ2C7q0KhYoJMaHhBTw\":{\"token\":\"$2a$12$dPXAT.Ly0LEaGqcNWEEfN.4YJgfwJRvXT.nbBlhI88sBxGYZxuwIS\",\"expiry\":1562289445,\"last_token\":\"$2a$12$S2pM6zhuuApEp7v1YZnNSOSKAbjSbxiASAGBdftgEfdfH1xFT6tp6\",\"updated_at\":\"2019-06-21T01:17:26.413Z\"},\"tpif2jBGApnKJW9sx9H09A\":{\"token\":\"$2a$12$o1F19qEi/BlKZJifU/3jyO71FLFP438Zv/96/c65ZsCrlgS2Z//12\",\"expiry\":1562290200,\"last_token\":\"$2a$12$vTI9cG126AJWuCFaQPGMGuOsIwr2x9.x5ziKTTWAKiOveMgUy8F8y\",\"updated_at\":\"2019-06-21T01:30:00.648Z\"}}"], ["updated_at", "2019-06-21 01:30:00.869997"], ["id", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 468ms (Views: 5.3ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/api/v1/tasks" for 172.19.0.1 at 2019-06-21 01:31:28 +0000
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mantony0148@icloud.com"], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 0 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 1 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 2 AND user_id = 1)[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"4Voi4HztBj3iRsuxsiKPKA\":{\"token\":\"$2a$12$yYx8YQ2lld/COhLL9OX6jeJS5iUn17kmL3hmyPRprVCWF.4ki7tY6\",\"expiry\":1562269904,\"last_token\":\"$2a$12$bX5drk72MzN47bl4nQWyv.a1TtFQbiWrmYYSAKdScBEv9rfrXWYz.\",\"updated_at\":\"2019-06-20T19:51:44.955Z\"},\"VeyPyuSuQ8vfkaDLTInsqg\":{\"token\":\"$2a$12$bT5800vUSqHRm5ciQqGn0uaL1Hsl2KuWnB/1iYKA8y2czpVOewAsa\",\"expiry\":1562271863,\"last_token\":\"$2a$12$o3exDnWLuIKvc/CPyWr3.u0z9Wf68k2Rt4L.pX35raRXWUUka83j6\",\"updated_at\":\"2019-06-20T20:24:23.799Z\"},\"TcKUgMGYpv68dLIkLNDW0w\":{\"token\":\"$2a$12$j98YJurziOg9WwvufevBZOxTz7L06lIVAc6qAW0gxaHImEgU4YTG6\",\"expiry\":1562276130,\"last_token\":\"$2a$12$FXqcxJG.BANAiU/7jMi9duiRsDGZxzphGAhEMHLmnWyvRsgdU2DQa\",\"updated_at\":\"2019-06-20T21:35:33.656Z\"},\"pjFb_yR83CvFeuf5n9i6CA\":{\"token\":\"$2a$12$BDlmO9x1vZNGDh1maUJTZ.fWRnTWgTl0Z/CUv7QLzMljERxr7exia\",\"expiry\":1562276851,\"last_token\":\"$2a$12$KfoWtEdsMHUtLwE1dwdt0OvOB3k3bwYT8Vij2qw.b2nJr/7pzfiTW\",\"updated_at\":\"2019-06-20T21:47:31.123Z\"},\"BTmY9F6bwLi1LQVa9hJy5Q\":{\"token\":\"$2a$12$SgIGj.P8pamDJaeQbABmE.jSLf2khIUm1yajJ.kpvPLOg/UUO1bZa\",\"expiry\":1562276943,\"last_token\":\"$2a$12$GdESOMSsqNHLav3lC7qZPuSLK85sGLLmJg0Z.GV7frZHJt7m2P0n2\",\"updated_at\":\"2019-06-20T21:49:03.115Z\"},\"rcHnW7ZM4iMtRibF6TqnaA\":{\"token\":\"$2a$12$FG0Ef5.wzmWJUAtcxuiLje9/IPWPE0Kb2giTaJlH/nLQTXrmp1a36\",\"expiry\":1562277026,\"last_token\":\"$2a$12$cxkaJkmkSJn.p6p7fv5rcuejhOHovwV0vNFAxsStFPWRyiDGom/oC\",\"updated_at\":\"2019-06-20T21:50:26.090Z\"},\"ndD2VlnGaJAreXIhM3g16A\":{\"token\":\"$2a$12$KUWcexcZV/fXCa6pt5dIJe0.CeHyQNkCoazjIWZzp.obP4jAlc88K\",\"expiry\":1562278036,\"last_token\":\"$2a$12$cfDr2ABRKdxOE/WTzJQL7uBdJJoKqYYFdKhIU7BQQ9W5NvNTCCUOK\",\"updated_at\":\"2019-06-20T22:07:16.865Z\"},\"EyOR03huy20jEGndZq4gfQ\":{\"token\":\"$2a$12$jdzbti2byavELYG7dPhET.7UUe/U5EmBH6XXD9SWpzdKWd0Ojsrc6\",\"expiry\":1562281268,\"last_token\":\"$2a$12$mprMnrYABjJ5kSdZQZcAi.tqFYPrYkW8d49ffXMncYSklA4gdZmz.\",\"updated_at\":\"2019-06-20T23:01:08.511Z\"},\"bwMjQ2C7q0KhYoJMaHhBTw\":{\"token\":\"$2a$12$dPXAT.Ly0LEaGqcNWEEfN.4YJgfwJRvXT.nbBlhI88sBxGYZxuwIS\",\"expiry\":1562289445,\"last_token\":\"$2a$12$S2pM6zhuuApEp7v1YZnNSOSKAbjSbxiASAGBdftgEfdfH1xFT6tp6\",\"updated_at\":\"2019-06-21T01:17:26.413Z\"},\"tpif2jBGApnKJW9sx9H09A\":{\"token\":\"$2a$12$Aq4IJ.FGqLgMsqCC4wXJ0eAOYrXnY6GZX0rxscsznGtW7cQXx12/K\",\"expiry\":1562290288,\"last_token\":\"$2a$12$o1F19qEi/BlKZJifU/3jyO71FLFP438Zv/96/c65ZsCrlgS2Z//12\",\"updated_at\":\"2019-06-21T01:31:28.343Z\"}}"], ["updated_at", "2019-06-21 01:31:28.551570"], ["id", 1]]
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /gems/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 200 OK in 454ms (Views: 10.6ms | ActiveRecord: 6.3ms)
+
+
