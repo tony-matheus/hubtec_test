@@ -1,0 +1,25 @@
+
+
+@media (max-width: 700px) {
+
+    .FormField__Link{
+        text-align: center;
+        color: #d5e7ff;
+        text-decoration: none;
+        display: inline-block;
+        border-bottom: 1.5px solid #225E62;
+        padding-bottom: 5px;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 700px) {
+    .FormField__Link{
+        color: #66707D;
+        text-decoration: none;
+        display: inline-block;
+        border-bottom: 1.5px solid #225E62;
+        padding-bottom: 5px;
+    }
+}
