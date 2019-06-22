@@ -29,20 +29,21 @@ RSpec.describe 'Api V1 Task Requests', type: :request do
   end
 
   describe 'POST /api/v1/task' do
-    it 'should create task' do
+    before(:each) do
       post '/api/v1/tasks', headers: @headers, params: { task: valid_params }
+    end
+    it 'should create task' do
       expect(response).to be_successful
     end
 
     it 'should return created task' do
-      post '/api/v1/tasks', headers: @headers, params: { task: valid_params }
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['name']).to be === valid_params[:name]
       expect(parsed_response['description']).to be === valid_params[:description]
     end
   end
 
-  describe 'PUT /api/v1/tasks/:task_id' do
+  describe 'PUT /api/v1/tasks/:id' do
     let(:task) { create(:task, :with_user) }
     let(:attr) {attributes_for(:task)}
 
@@ -51,7 +52,11 @@ RSpec.describe 'Api V1 Task Requests', type: :request do
       task.reload
     end
 
-    it { expect(response).to be_successful }
+
+    it 'should success' do
+      expect(response).to have_http_status(200)
+    end
+
     it 'attributes' do
       attr.each do |key, value|
         expect(task[key]).to eq(attr[key])
@@ -59,10 +64,15 @@ RSpec.describe 'Api V1 Task Requests', type: :request do
     end
   end
 
-  describe 'DELETE /api/v1/tasks/:task_id' do
+  describe 'DELETE /api/v1/tasks/:id' do
     before(:each) do
       tasks = create_list(:task, 5, user_id: @user.id)
       delete "/api/v1/tasks/#{tasks.first.id}", headers: @headers
+    end
+
+    it 'should success' do
+      expect(response).to have_http_status(200)
+      expect(response.body).to include"destroyed"
     end
 
     it 'should soft delete the task' do
@@ -72,8 +82,47 @@ RSpec.describe 'Api V1 Task Requests', type: :request do
 
     it "should soft delete the task but the task must exist" do
       tasks = Task.unscoped.all
-      binding.pry
       expect(tasks.length).to be == 5
+    end
+  end
+
+  describe 'GET /api/v1/tasks/:id/recycle' do
+    before(:each) do
+      tasks = create_list(:task, 5, user_id: @user.id)
+      tasks.first.soft_delete
+      get "/api/v1/tasks/#{tasks.first.id}/recycle", headers: @headers
+    end
+
+    it 'should success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should recycle the deleted task' do
+      tasks = Task.all
+      expect(tasks.length).to be == 5
+    end
+
+    it 'should return recycle text' do
+      expect(response.body).to include("recycle")
+    end
+  end
+
+  describe 'GET /api/v1/tasks/destroyed' do
+    before(:each) do
+      tasks = create_list(:task, 5, user_id: @user.id)
+      tasks.each do |task|
+        task.soft_delete
+      end
+      get "/api/v1/tasks/destroyed", headers: @headers
+    end
+
+    it 'should success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should return all deleted tasks' do
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.length).to be == 5
     end
   end
 
