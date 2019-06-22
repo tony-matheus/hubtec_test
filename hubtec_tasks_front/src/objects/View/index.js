@@ -15,11 +15,11 @@ const BreakText = styled.div`
 const Scroll = styled.div`
   height: 0;
   overflow-x: visible!important;
+  ${props => props.center ? 'margin: auto' : ''}
 `;
 
 const ContainerInline = styled.div`
   display: flex;
-  padding-top: 3%;
 `;
 
 
