@@ -8,7 +8,7 @@ import {ViewData, EditData, BreakText} from "../../../objects/View";
 import Options from '../../../objects/Options';
 
 export default class TaskUnit extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state = {
             hide: false,

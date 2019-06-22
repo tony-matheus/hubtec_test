@@ -107,11 +107,7 @@ export function update_task_status({id, task}, old_status = ""){
     }
 }
 
-export function logout(data){
-    const user = {
-        user : {data}
-    };
-
+export function logout(){
     const headers = getHeaders();
 
     const request = API.delete('/auth/sign_out',  {headers: headers});

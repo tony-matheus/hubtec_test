@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Row, Col, Card, TextInput, Icon, Modal} from 'react-materialize';
-import { CardForm }from '../../../objects/FormField'
+import {CardForm}from '../../../objects/FormField'
 import {
     FormFields,
     FormField,

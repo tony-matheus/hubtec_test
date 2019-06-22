@@ -1,14 +1,14 @@
 import React, {Fragment} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { createTask, deleteTask, update_task_status, logout} from "./actions";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {createTask, deleteTask, update_task_status, logout} from "./actions";
 import TaskNew from "../../components/Task/TaskNew";
-import { Row, Col } from 'react-materialize';
+import {Row, Col} from 'react-materialize';
 import TaskList from "../../components/Task/List";
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import {FixedButton} from "../../objects/FormField";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import { logout } from './actions';
+// import { logout} from './actions';
 
 
 class TasksContainer extends React.Component{
