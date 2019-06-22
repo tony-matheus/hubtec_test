@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tasks do
-        get 'recycle', on: :member
+        member do
+          get 'recycle'
+          delete 'delete'
+        end
         collection do
           get 'destroyed'
         end

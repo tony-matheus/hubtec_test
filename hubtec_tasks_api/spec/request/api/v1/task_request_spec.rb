@@ -126,4 +126,26 @@ RSpec.describe 'Api V1 Task Requests', type: :request do
     end
   end
 
+  describe 'DELETE /api/v1/tasks/delete' do
+    before(:each) do
+      tasks = create_list(:task, 5, user_id: @user.id)
+      delete "/api/v1/tasks/#{tasks.first.id}/delete", headers: @headers
+    end
+
+    it 'should success' do
+      expect(response).to have_http_status(200)
+      expect(response.body).to include"destroyed"
+    end
+
+    it 'should delete the task' do
+      tasks = Task.all
+      expect(tasks.length).to be == 4
+    end
+
+    it "should delete the task but the task must not exist in unscoped" do
+      tasks = Task.unscoped.all
+      expect(tasks.length).to be == 4
+    end
+  end
+
 end

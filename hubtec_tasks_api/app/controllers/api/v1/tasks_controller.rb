@@ -1,7 +1,7 @@
 module Api::V1
   class TasksController < Api::ApiController
     before_action :authenticate_user!
-    before_action :set_task, only: %i[update destroy]
+    before_action :set_task, only: %i[update destroy delete]
     before_action :set_task_destroyed, only: :recycle
 
     def index
@@ -28,6 +28,14 @@ module Api::V1
 
     def destroy
       if @task.soft_delete
+        render json: :destroyed
+      else
+        render json: @task.errors.full_messages, status: :unprocessable_entity
+      end
+    end
+
+    def delete
+      if @task.destroy
         render json: :destroyed
       else
         render json: @task.errors.full_messages, status: :unprocessable_entity
