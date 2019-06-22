@@ -8,8 +8,6 @@ import TaskList from "../../components/Task/List";
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import {FixedButton} from "../../objects/FormField";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import { logout} from './actions';
-
 
 class TasksContainer extends React.Component{
     constructor(){
@@ -78,7 +76,7 @@ function mapStateToProps(state) {
         done: state.done,
         in_progress: state.in_progress
     }
-};
+}
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ createTask, deleteTask, update_task_status, logout }, dispatch)

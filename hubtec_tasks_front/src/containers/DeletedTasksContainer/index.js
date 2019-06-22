@@ -8,35 +8,21 @@ import DeletedList from "../../components/Task/DeletedList";
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import {FixedButton} from "../../objects/FormField";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import { logout} from './actions';
-
 
 class DeletedTasksContainer extends React.Component{
     constructor(){
         super();
         this.recycle_task = this.recycle_task.bind(this);
         this.true_delete_task = this.true_delete_task.bind(this);
-        // this.delete_task = this.delete_task.bind(this);
-        // this.update_task_status = this.update_task_status.bind(this);
-        // this.logout = this.logout.bind(this);
     };
 
-    // logout = event =>
-    // {
-    //     this.props.logout()
-    // };
-    //
     recycle_task(task){
         this.props.recycle_task(task);
     }
-    //
+
     true_delete_task(data){
         this.props.true_delete_task(data);
     }
-    //
-    // update_task_status(data, old_status = ""){
-    //     this.props.update_task_status(data, old_status)
-    // }
 
     render() {
         let deleted = this.props.deleted.length ? this.props.deleted : [];
