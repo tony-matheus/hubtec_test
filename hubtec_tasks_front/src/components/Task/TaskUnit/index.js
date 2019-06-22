@@ -72,7 +72,7 @@ export default class TaskUnit extends Component {
 
     true_delete_task = event => {
         this.props.true_delete_task({id: this.props.id})
-    }
+    };
 
     render() {
         return (

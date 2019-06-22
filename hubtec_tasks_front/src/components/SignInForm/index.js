@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { LocalForm } from 'react-redux-form';
-// import { LocalForm } from 'redux-form';
+
 import {
     FormCenter,
     FormField,
     FormFieldButton,
     FormFieldInput,
     FormFieldLabel,
-    FormFields,
-    FormButtonField,
     FormLogin
 } from '../../objects/FormField';
 import './style.css'
