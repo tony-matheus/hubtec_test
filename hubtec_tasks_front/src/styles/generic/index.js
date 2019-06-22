@@ -8,7 +8,8 @@ const Reset = createGlobalStyle`
   }    
   
   html, body, #root, .App {
-      height: 100%
+      height: 100%;
+      background-color: #45b0ffde;
     }
 `;
 

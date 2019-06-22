@@ -7,8 +7,8 @@ export default function(state = initialState, action) {
     switch (action.type) {
         case FETCH_IN_PROGRESS:
             return action.payload;
-        // case DELETE_IN_PROGRESS:
-        //     return state.filter(tweet => tweet.id !== action.payload);
+        case DELETE_IN_PROGRESS:
+            return state.filter(in_progress => in_progress.id !== action.payload);
         case ADD_IN_PROGRESS:
             console.log(state);
             console.log(action.payload);

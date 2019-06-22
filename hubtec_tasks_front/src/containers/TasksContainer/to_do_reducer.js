@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
             console.log(action.payload)
             return action.payload;
         case DELETE_TO_DO:
-            return state.filter(tweet => tweet.id !== action.payload);
+            return state.filter(to_do => to_do.id !== action.payload);
         case ADD_TO_DO:
             console.log(state);
             console.log(action.payload);

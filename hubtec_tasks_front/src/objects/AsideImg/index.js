@@ -6,7 +6,7 @@ const AsideImg = styled.div`
     }
     height: 100% ;
     width: ${props => props.active ? "50%" : "30%"};
-    background-color: #66DAC7;
+    background-color: #45b0ffde;
 `;
 
 export default AsideImg;

@@ -4,7 +4,6 @@ const GlobalStyles = createGlobalStyle `
   :root{
     --color-zero: #fff;
     --color-first: #2E4158;
-    
   }
 `;
 

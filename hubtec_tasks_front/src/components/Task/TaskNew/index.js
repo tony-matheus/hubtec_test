@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Row, Col, Card, TextInput, Icon, Modal} from 'react-materialize';
-import { CardForm }from '../../../objects/FormField'
+import {CardForm}from '../../../objects/FormField'
 import {
     FormFields,
     FormField,
@@ -59,7 +59,7 @@ export default class TaskNew extends Component {
     render() {
         return (
             <Fragment>
-                <FixedButton onClick={this.showAdd}> ADD Task </FixedButton>
+                <FixedButton top={0} onClick={this.showAdd}> ADD Task </FixedButton>
                 <CardForm hide={this.state.hide}>
                     <Title> Adicionar Task </Title>
                     <FormFields onSubmit={this.handleSubmit}>
