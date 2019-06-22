@@ -12,6 +12,10 @@ class Task < ApplicationRecord
     update(deleted_at: Time.current) if self.deleted_at.nil?
   end
 
+  def recycle
+    update(deleted_at: nil)
+  end
+
   def self.find_user_tasks(user_id)
     {
         to_do: self.find_to_do(user_id),
@@ -30,6 +34,10 @@ class Task < ApplicationRecord
 
   def self.find_done(user_id)
     self.where('status = ? AND user_id = ?', 2, user_id)
+  end
+
+  def self.find_deleted_tasks(user_id)
+    self.unscope(:where).where('user_id = ?', user_id).where.not(deleted_at: nil)
   end
 
   private

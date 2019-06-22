@@ -8,7 +8,7 @@ RSpec.describe Task, type: :model do
   end
 
   describe 'Validations' do
-    validations = %w[description name end_time status]
+    validations = %w[description name end_time]
     validations.each do |field|
       it { should validate_presence_of(field) }
     end
@@ -17,6 +17,11 @@ RSpec.describe Task, type: :model do
       it 'is valid with associated model' do
         expect(task).to be_valid
       end
+    end
+
+    it 'if status nil, must set status' do
+      task.save
+      expect(task).to be_valid
     end
   end
 
@@ -81,6 +86,47 @@ RSpec.describe Task, type: :model do
         expect(@tasks.length).to be == 2
       end
     end
+
+    context '#self.find_deleted_tasks' do
+      before(:each) do
+        @user_id = create(:user).id
+        tasks = create_list(:task, 3, :to_do, user_id: @user_id)
+        tasks.first.soft_delete
+      end
+      it 'should return deleted tasks' do
+        tasks = Task.find_deleted_tasks(@user_id)
+        expect(tasks.length).to be == 1
+      end
+    end
   end
 
+  describe 'Method' do
+    before(:each) do
+      @user_id = create(:user).id
+      @tasks = create_list(:task, 3, user_id: @user_id)
+      @tasks.first.soft_delete
+    end
+
+    context '#soft_delete' do
+      it 'should fake delete the data' do
+        tasks = Task.where(user_id: @user_id)
+        expect(tasks.length).to be == 2
+      end
+
+      it 'should have deleted tasks in database' do
+        tasks = Task.unscoped.all
+        expect(tasks.length).to be == 3
+      end
+    end
+
+    context '#recycle' do
+      it 'should recycle deleted tasks' do
+        task_id = @tasks.first.id
+        # @tasks.first.recycle
+        tasks = Task.all
+        binding.pry
+        expect(tasks.length).to be == 3
+      end
+    end
+  end
 end
