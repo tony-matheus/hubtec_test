@@ -3,8 +3,8 @@ import {Row, Col, Card, Icon, Textarea, TextInput} from 'react-materialize';
 import {FormFieldButton, ListFields} from '../../../objects/FormField';
 import InvisibleButton from '../../../objects/InvisibleButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEraser, faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
-import {ViewData, EditData} from "../../../objects/View";
+import {faEraser, faArrowRight, faArrowLeft, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
+import {ViewData, EditData, BreakText} from "../../../objects/View";
 import Options from '../../../objects/Options';
 
 export default class TaskUnit extends Component {
@@ -20,14 +20,24 @@ export default class TaskUnit extends Component {
             }
         };
         this.delete_task = this.delete_task.bind();
-        this.update_task_status = this.update_task_status.bind();
+        this.update_task_status_in_progress = this.update_task_status_in_progress.bind();
+        this.update_task_status_done = this.update_task_status_done.bind();
     }
 
     delete_task = event => {
         this.props.delete_task({id: this.props.id, status: this.props.status});
     };
 
-    update_task_status = event => {
+    update_task_status_to_do = event => {
+        this.props.update_task_status({id: this.props.id, task: {status: "to_do"}}, this.props.status);
+    };
+
+    update_task_status_in_progress = event => {
+        // alert("in_progress");
+        this.props.update_task_status({id: this.props.id, task: {status: "in_progress"}}, this.props.status);
+    };
+
+    update_task_status_done = event => {
         this.props.update_task_status({id: this.props.id, task: {status: "done"}}, this.props.status);
     };
 
@@ -40,7 +50,12 @@ export default class TaskUnit extends Component {
     };
 
     showEdit = event => {
-        this.setState({hide: !this.state.hide, task: this.props})
+        event.preventDefault()
+        console.log("saudhasudh")
+        if(this.props.status == "to_do"){
+            console.log("saudhasudh")
+            this.setState({hide: !this.state.hide, task: this.props})
+        }
     };
 
     handleChange = event => {
@@ -59,7 +74,7 @@ export default class TaskUnit extends Component {
                     <Card>
                         <Row>
                             <Col s={6}>
-                                <div onDoubleClick={this.showEdit}>Name: <b>{this.props.name}</b></div>
+                                <BreakText onDoubleClick={this.showEdit}><b>{this.props.name}</b></BreakText>
                             </Col>
                             <Col s={4}>
                                 <ListFields>
@@ -69,20 +84,44 @@ export default class TaskUnit extends Component {
                             </Col>
                             <Col s={2} m={2}>
                                 <Options>
-                                    <InvisibleButton hide={this.props.status !== "to_do"}>
+                                    <InvisibleButton
+                                        hide={this.props.status === "done" }
+                                        onClick={this.showEdit}>
                                         <FontAwesomeIcon
                                             style={"cursor: pointer"}
-                                            icon={faCheck}
-                                            size={"2x"}
-                                            onClick={this.update_task_status}
-                                            color={"rgba(48,239,52,0.81)"}
+                                            icon={faPencilAlt}
+                                            size={"1x"}
+                                            onClick={this.showEdit}
+                                            color={"rgba(0,0,0,0.81)"}
                                         />
                                     </InvisibleButton>
-                                    <InvisibleButton>
+                                    <InvisibleButton
+                                        hide={this.props.status !== "in_progress" }
+                                        onClick={(this.props.status === "in_progress") ? this.update_task_status_to_do : this.update_task_status_done }>
+                                        <FontAwesomeIcon
+                                            style={"cursor: pointer"}
+                                            icon={faArrowLeft}
+                                            size={"1x"}
+                                            onClick={(this.props.status === "in_progress") ? this.update_task_status_to_do : this.update_task_status_done }
+                                            color={"rgba(133,239,100,0.81)"}
+                                        />
+                                    </InvisibleButton>
+                                    <InvisibleButton
+                                        hide={this.props.status === "done" }
+                                        onClick={(this.props.status === "to_do") ? this.update_task_status_in_progress : this.update_task_status_done }>
+                                        <FontAwesomeIcon
+                                            style={"cursor: pointer"}
+                                            icon={faArrowRight}
+                                            size={"1x"}
+                                            onClick={(this.props.status === "to_do") ? this.update_task_status_in_progress : this.update_task_status_done }
+                                            color={"rgba(133,239,100,0.81)"}
+                                        />
+                                    </InvisibleButton>
+                                    <InvisibleButton onClick={this.delete_task}>
                                         <FontAwesomeIcon
                                             style={"cursor: pointer"}
                                             icon={faEraser}
-                                            size={"2x"}
+                                            size={"1x"}
                                             onClick={this.delete_task}
                                             color={"#ef2626cf"}
 
@@ -93,7 +132,7 @@ export default class TaskUnit extends Component {
                         </Row>
                         <Row>
                             <Col s={12}>
-                                <div onDoubleClick={this.showEdit}><b>{this.props.description}</b></div>
+                                <BreakText onDoubleClick={this.showEdit}><span></span><b>{this.props.description}</b></BreakText>
                             </Col>
                         </Row>
                     </Card>
@@ -131,27 +170,6 @@ export default class TaskUnit extends Component {
                                         />
                                     </ListFields>
                                 </Col>
-                                <Col s={2} m={2}>
-                                    <InvisibleButton hide={this.props.status !== "to_do"}>
-                                        <FontAwesomeIcon
-                                            style={"cursor: pointer"}
-                                            icon={faCheck}
-                                            size={"2x"}
-                                            onClick={this.update_task_status}
-                                            color={"rgba(48,239,52,0.81)"}
-                                        />
-                                    </InvisibleButton>
-                                    <InvisibleButton>
-                                        <FontAwesomeIcon
-                                            style={"cursor: pointer"}
-                                            icon={faEraser}
-                                            size={"2x"}
-                                            onClick={this.delete_task}
-                                            color={"#ef2626cf"}
-
-                                        />
-                                    </InvisibleButton>
-                                </Col>
                             </Row>
                             <Row>
                                 <Col s={12}>
@@ -159,10 +177,10 @@ export default class TaskUnit extends Component {
                                         <Textarea
                                             id="description"
                                             name="description"
-                                            s={4} m={4} l={11} xl={12}
+                                            s={12} m={10} l={11} xl={12}
                                             value={this.state.task.description}
                                             onChange={this.handleChange}
-                                            maxLength="200"
+                                            maxLength="500"
                                             label="Task Description"
                                             required/>
                                     </div>
@@ -170,10 +188,10 @@ export default class TaskUnit extends Component {
                             </Row>
                             <Row>
                                 <div style={{float: "left"}}>
-                                    <FormFieldButton onClick={this.showEdit}>Close</FormFieldButton>
+                                    <FormFieldButton small onClick={this.showEdit}>Close</FormFieldButton>
                                 </div>
                                 <div style={{float: "right"}}>
-                                    <FormFieldButton primary type="submit">Salvar</FormFieldButton>
+                                    <FormFieldButton primary small type="submit">Salvar</FormFieldButton>
                                 </div>
                             </Row>
                         </form>

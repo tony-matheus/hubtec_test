@@ -4,12 +4,18 @@ import {Card} from 'react-materialize';
 
 const FixedButton = styled(Button)`
   position: fixed;
-  top: 0;
-  right: 10px;
+  top: ${props => props.top}px;
+  right: ${props => props.right}px;
+  left: ${props => props.left ? props.left : ""}px;
   padding-bottom: 10px;
   margin-top: 10px;
   color: white;
+  z-index: 1;
+  svg{
+    color: white
+  }
 `;
+
 
 const CardForm = styled(Card)`
     display: ${props => props.hide ? "none" : "unset"} !important;
@@ -96,7 +102,7 @@ const FormFieldButton = styled.button`
   border: none;
   outline: none;
   border-radius: 25px;
-  padding: 15px 70px;
+  padding: ${props => props.small ? "10px 40px" : "15px 70px;"};
   font-size: .9em;
   font-weight: 500;
   margin-right: 20px;

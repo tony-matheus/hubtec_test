@@ -1,9 +1,8 @@
 import API from '../../api';
-import {setHeaders, getHeaders, logoutSession, response_error } from '../../helpers/session';
+import {setHeaders, getHeaders, logoutSession, response_error, BASE_FRONT_URL} from '../../helpers/session';
 import {DELETE_DONE, DELETE_IN_PROGRESS, DELETE_TO_DO, ADD_IN_PROGRESS, ADD_DONE, ADD_TO_DO } from './constants';
 
 export function createTask(data){
-    console.log(data);
     const task = {
         task: data
     };
@@ -13,7 +12,6 @@ export function createTask(data){
     return(dispatch) => {
         request
             .then((response) => {
-                console.log(response.data.status);
                 setHeaders(response.headers);
                 switch (response.data.status) {
                     case "to_do":
@@ -26,10 +24,8 @@ export function createTask(data){
                         dispatch({ type: ADD_DONE, payload: response.data });
                         break;
                 }
-                // dispatch({ type: ADD_TASK, payload: response.data })
             })
             .catch((error) => {
-                console.log(error.response);
                 const message = response_error(error.response.data);
                 window.Materialize.toast(message, 4000, 'red');
                 setHeaders(error.response.headers);
@@ -44,8 +40,9 @@ export function deleteTask({id, status}){
     return(dispatch) => {
         request
             .then((response) => {
-                console.log(response.data.status);
                 setHeaders(response.headers);
+                console.log(id);
+                console.log(status);
                 switch (status) {
                     case "to_do":
                         dispatch({ type: DELETE_TO_DO, payload: id });
@@ -57,7 +54,6 @@ export function deleteTask({id, status}){
                         dispatch({ type: DELETE_DONE, payload: id });
                         break;
                 }
-                // dispatch({ type: DELETE_TASK, payload: response.data })
             })
             .catch((error) => {
                 window.Materialize.toast('User or password incorrect', 4000, 'red');
@@ -72,11 +68,13 @@ export function update_task_status({id, task}, old_status = ""){
     return(dispatch) => {
         request
             .then((response) => {
-                console.log(response.data.status);
                 setHeaders(response.headers);
+
+                console.warn(old_status);
                 if(old_status == "") {
                     old_status = task.status
                 }
+                console.warn(old_status);
                 switch (old_status) {
                     case "to_do":
                         dispatch({ type: DELETE_TO_DO, payload: id });
@@ -100,13 +98,32 @@ export function update_task_status({id, task}, old_status = ""){
                         break;
                 }
 
-                // dispatch({ type: ADD_TASK, payload: response.data })
             })
             .catch((error) => {
-                console.log(error.response);
                 const message = response_error(error.response.data);
                 window.Materialize.toast(message, 4000, 'red');
                 setHeaders(error.response.headers);
+            })
+    }
+}
+
+export function logout(data){
+    const user = {
+        user : {data}
+    };
+
+    const headers = getHeaders();
+
+    const request = API.delete('/auth/sign_out',  {headers: headers});
+    return(dispatch) => {
+        request
+            .then((response)=>{
+                logoutSession();
+                window.location.replace(BASE_FRONT_URL+"/auth/sign-in")
+            })
+            .catch((error) => {
+                window.Materialize.toast('User or password incorrect', 4000, 'red');
+                console.log(error)
             })
     }
 }

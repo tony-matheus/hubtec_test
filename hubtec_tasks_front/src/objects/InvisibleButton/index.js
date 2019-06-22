@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const InvisibleButton = styled.button`
   //background-color: ${props => props.primary ? "#52C4B9" : "#5b5b5b"};
-  width: 40px;
-  height: 40px;
+  width: 23px;
+  height: 23px;
   background-color: #fff;
   color: white;
   border-radius: 50px;
