@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {FixedButton} from "../../../objects/FormField";
 
 function CreateTask(props) {
     const [title, setTitle] = useState('');
@@ -19,15 +20,15 @@ function CreateTask(props) {
                     task: { title: title, done: false}
                 })
             }
-        )
-        setShow(false)
-        setTitle('')
+        );
+        setShow(false);
+        setTitle('');
         props.loadTasks();
     });
 
     return (
         <div>
-            <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Tasks</Button>
+            <Button  top={650} right={10} onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Tasks</Button>
 
             <Modal show={show || false} onHide={e => setShow(false)}>
                 <Modal.Header closeButton>

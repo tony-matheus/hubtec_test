@@ -3,7 +3,7 @@ import {Row, Col, Card, Icon, Textarea, TextInput} from 'react-materialize';
 import {FormFieldButton, ListFields} from '../../../objects/FormField';
 import InvisibleButton from '../../../objects/InvisibleButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEraser, faArrowRight, faArrowLeft, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
+import {faEraser, faArrowRight, faArrowLeft, faPencilAlt, faTrashRestoreAlt} from '@fortawesome/free-solid-svg-icons'
 import {ViewData, EditData, BreakText} from "../../../objects/View";
 import Options from '../../../objects/Options';
 
@@ -66,6 +66,13 @@ export default class TaskUnit extends Component {
         this.setState({task})
     };
 
+    recycle_task = event => {
+        this.props.recycle_task({id: this.props.id})
+    };
+
+    true_delete_task = event => {
+        this.props.true_delete_task({id: this.props.id})
+    }
 
     render() {
         return (
@@ -83,7 +90,7 @@ export default class TaskUnit extends Component {
                                 </ListFields>
                             </Col>
                             <Col s={2} m={2}>
-                                <Options>
+                                <Options hide={ !this.props.update_task_status}>
                                     <InvisibleButton
                                         hide={this.props.status === "done" }
                                         onClick={this.showEdit}>
@@ -96,7 +103,7 @@ export default class TaskUnit extends Component {
                                         />
                                     </InvisibleButton>
                                     <InvisibleButton
-                                        hide={this.props.status !== "in_progress" }
+                                        hide={this.props.status !== "in_progress"}
                                         onClick={(this.props.status === "in_progress") ? this.update_task_status_to_do : this.update_task_status_done }>
                                         <FontAwesomeIcon
                                             style={"cursor: pointer"}
@@ -107,7 +114,7 @@ export default class TaskUnit extends Component {
                                         />
                                     </InvisibleButton>
                                     <InvisibleButton
-                                        hide={this.props.status === "done" }
+                                        hide={this.props.status === "done"}
                                         onClick={(this.props.status === "to_do") ? this.update_task_status_in_progress : this.update_task_status_done }>
                                         <FontAwesomeIcon
                                             style={"cursor: pointer"}
@@ -125,6 +132,30 @@ export default class TaskUnit extends Component {
                                             onClick={this.delete_task}
                                             color={"#ef2626cf"}
 
+                                        />
+                                    </InvisibleButton>
+                                </Options>
+                                <Options hide={this.props.update_task_status}>
+                                    <InvisibleButton
+                                        big
+                                        onClick={this.recycle_task}>
+                                        <FontAwesomeIcon
+                                            style={"cursor: pointer"}
+                                            icon={faTrashRestoreAlt}
+                                            size={"2x"}
+                                            onClick={this.recycle_task}
+                                            color={"rgba(27,239,43,0.81)"}
+                                        />
+                                    </InvisibleButton>
+                                    <InvisibleButton
+                                        big
+                                        onClick={this.true_delete_task}>
+                                        <FontAwesomeIcon
+                                            style={"cursor: pointer"}
+                                            icon={faEraser}
+                                            size={"2x"}
+                                            onClick={this.true_delete_task}
+                                            color={"#ef2626cf"}
                                         />
                                     </InvisibleButton>
                                 </Options>

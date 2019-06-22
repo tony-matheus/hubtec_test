@@ -8,9 +8,9 @@ export function signIn({email, password}) {
     return(dispatch) =>{
         request
             .then((response)=>{
-                console.log(response.headers)
+                console.log(response.headers);
                 setHeaders(response.headers);
-                window.location.replace(BASE_FRONT_URL+"/dashboard")
+                window.location.replace(BASE_FRONT_URL+"/dashboard/tasks")
             })
             .catch((error)=>{
                 window.Materialize.toast('User or password incorrect', 4000, 'red');

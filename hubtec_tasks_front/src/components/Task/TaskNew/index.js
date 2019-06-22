@@ -11,6 +11,8 @@ import {
 } from "../../../objects/FormField";
 
 import Title from '../../../objects/Title';
+import {faTrashRestoreAlt, faPlusCircle, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export default class TaskNew extends Component {
     constructor() {
         super();
@@ -59,9 +61,18 @@ export default class TaskNew extends Component {
     render() {
         return (
             <Fragment>
-                <FixedButton top={0} onClick={this.showAdd}> ADD Task </FixedButton>
+                <FixedButton top={600} right={10} onClick={this.showAdd}>
+                    <span>ADD Task</span>
+                    <FontAwesomeIcon
+                        style={{cursor: "pointer", "margin-left": 10+"px"}}
+                        icon={faPlusCircle}
+                        size={"1x"}
+                        color={"rgba(48,239,52,0.81)"}
+                        title="Deleted Tasks"
+                    />
+                </FixedButton>
                 <CardForm hide={this.state.hide}>
-                    <Title> Adicionar Task </Title>
+                    <Title> Add Task </Title>
                     <FormFields onSubmit={this.handleSubmit}>
                         <Row>
                             <Col s={12}>
