@@ -1,7 +1,9 @@
 <h2>TEST  HUBTEC  - Tutorial step by step to run this api</h2>
+<h5>Click <a href="https://hubtec-front.herokuapp.com/auth/sign-up">Here</a>, to see the project running on heroku.</h5>
 <hr/>
 <h3>System Dependencies</h3>
 <hr/>
+
 * Docker (https://www.docker.com/)
 * Docker-compose
 
@@ -21,7 +23,8 @@
 - React-materialize - Css library build for react.
 - Redux - Library to manage application state.
 - Styled-components - To create components with logic and styled.
-
+<h5>GitHub App</h5>
+- EbertApp - Continuos Static Ana
 <hr/>
 <h3>Step by step to run the project in localhost using docker-compose</h3>
 1. Download the project from GitHub
@@ -60,19 +63,18 @@ docker-compose up
 
 <hr/>
 <h3>To run Rails Tests </h3>
-
 ```bash
 docker-compose run --rm app bundle exec rspec
 ```
 
 <hr/>
 <h3>Links</h3>
-
 <a href="https://documenter.getpostman.com/view/6888921/S1a1bUJc?version=latest">Api Documentation</a> by postman 
 
-<hr/>
+<a href="https://www.linkedin.com/in/tony-matheus-55909313b">My LinkedIn</a>
 
-<h5>Commits Structure</h5>
+<hr/>
+<h5>Commits Structure and decisions</h5>
 
 was been created a project in GitHub, with task management, with the follow structure:
 
