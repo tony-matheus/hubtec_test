@@ -10,8 +10,7 @@ import Base from './styles/generic';
 
 
 import { Provider } from 'react-redux';
-import Store, { history } from './configureStore';
-import { ConnectedRouter } from 'react-router-redux'
+import Store from './configureStore';
 
 ReactDOM.render(
     <Fragment>

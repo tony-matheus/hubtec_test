@@ -1,17 +1,14 @@
 import React, {Component, Fragment} from 'react';
-import {Row, Col, Card, TextInput, Icon, Modal} from 'react-materialize';
+import {Row, Col, TextInput} from 'react-materialize';
 import {CardForm}from '../../../objects/FormField'
 import {
     FormFields,
-    FormField,
-    FormFieldInput,
-    FormFieldLabel,
     FormFieldButton,
     FixedButton
 } from "../../../objects/FormField";
 
 import Title from '../../../objects/Title';
-import {faTrashRestoreAlt, faPlusCircle, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export default class TaskNew extends Component {
     constructor() {

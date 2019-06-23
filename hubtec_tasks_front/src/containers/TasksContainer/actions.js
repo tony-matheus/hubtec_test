@@ -3,10 +3,6 @@ import {setHeaders, getHeaders, logoutSession, response_error, BASE_FRONT_URL} f
 import {DELETE_DONE, DELETE_IN_PROGRESS, DELETE_TO_DO, ADD_IN_PROGRESS, ADD_DONE, ADD_TO_DO } from './constants';
 
 export function createTask(data){
-    const task = {
-        task: data
-    };
-
     const headers = getHeaders();
     const request = API.post('/api/v1/tasks/', data, {headers: headers});
     return(dispatch) => {
@@ -71,7 +67,7 @@ export function update_task_status({id, task}, old_status = ""){
                 setHeaders(response.headers);
 
                 console.warn(old_status);
-                if(old_status == "") {
+                if(old_status === "") {
                     old_status = task.status
                 }
                 console.warn(old_status);
