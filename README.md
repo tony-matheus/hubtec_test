@@ -28,7 +28,7 @@ Regarding the decisions, I followed a basic idea of simply each user being able 
 - Redux - Library to manage application state.
 - Styled-components - To create components with logic and styled.
 <h5>GitHub App</h5>
-- EbertApp - Continuos Static Ana
+- EbertApp - Continuos Static Analysis to improve your code. ( changed to sourcelevel in 23/06/2019 )
 <hr/>
 <h3>Step by step to run the project in localhost using docker-compose</h3>
 1. Download the project from GitHub
