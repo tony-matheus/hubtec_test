@@ -23943,3 +23943,926 @@ Processing by Api::V1::TasksController#delete as HTML
 Completed 200 OK in 228ms (Views: 0.1ms | ActiveRecord: 3.9ms)
   [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
   [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "tasks" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (11.0ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (4.6ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'hubtec_tasks_api_test'[0m
+  [1m[35m (22.6ms)[0m  [1m[35mTRUNCATE TABLE "public"."users", "public"."tasks" RESTART IDENTITY CASCADE;[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "tasks" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$5TxIi.n7BI8oJJlJM8KOvesUvwKb2x/heyV1qQXAJF8zMHKBVVWhG"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:21:59.150722"], ["updated_at", "2019-06-22 23:21:59.150722"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:21:59 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (2.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"0azWb8t1gk4rHAF2L3lkvw\":{\"token\":\"$2a$12$2mEwW3D6pSbLgQu1b/ino.ipZuAllz9Ip5UrvfPzj6GOC9QYWl5TS\",\"expiry\":1562455319}}"], ["updated_at", "2019-06-22 23:21:59.398546"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"0azWb8t1gk4rHAF2L3lkvw\":{\"token\":\"$2a$12$fLpXwyPo1nqjG/FaHC90FuJnCma6sGZikO/XfIafaSXlJ2LGAAOwu\",\"expiry\":1562455319,\"last_token\":\"$2a$12$2mEwW3D6pSbLgQu1b/ino.ipZuAllz9Ip5UrvfPzj6GOC9QYWl5TS\",\"updated_at\":\"2019-06-22T23:21:59.410Z\"}}"], ["updated_at", "2019-06-22 23:21:59.622380"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 443ms (Views: 0.2ms | ActiveRecord: 7.0ms)
+Started GET "/api/v1/tasks" for 127.0.0.1 at 2019-06-22 23:21:59 +0000
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 0 AND user_id = 1)[0m
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 1 AND user_id = 1)[0m
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 2 AND user_id = 1)[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"0azWb8t1gk4rHAF2L3lkvw\":{\"token\":\"$2a$12$fLpXwyPo1nqjG/FaHC90FuJnCma6sGZikO/XfIafaSXlJ2LGAAOwu\",\"expiry\":1562455319,\"last_token\":\"$2a$12$2mEwW3D6pSbLgQu1b/ino.ipZuAllz9Ip5UrvfPzj6GOC9QYWl5TS\",\"updated_at\":\"2019-06-22T23:21:59.887Z\"}}"], ["updated_at", "2019-06-22 23:21:59.888067"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 244ms (Views: 3.4ms | ActiveRecord: 5.5ms)
+  [1m[35m (1.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$dzgHtHEJzBKTM/QBygJkm.RiLahcLxef11cbCWtqD4toD75nA.E6i"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:21:59.912215"], ["updated_at", "2019-06-22 23:21:59.912215"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:21:59 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mbATwksGX9ly4-8xFkHRMA\":{\"token\":\"$2a$12$GyH/Q4jDP7OoZeaSBoHFJ.DE5QamRV8J9HuEi2ctigQT5YZIX7uHS\",\"expiry\":1562455319}}"], ["updated_at", "2019-06-22 23:22:00.140583"], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mbATwksGX9ly4-8xFkHRMA\":{\"token\":\"$2a$12$Wwf10EkJpSElMoCF1Oinbu5MSiKejcsRAC7AlwBc4wQQvxkbRBVs.\",\"expiry\":1562455320,\"last_token\":\"$2a$12$GyH/Q4jDP7OoZeaSBoHFJ.DE5QamRV8J9HuEi2ctigQT5YZIX7uHS\",\"updated_at\":\"2019-06-22T23:22:00.150Z\"}}"], ["updated_at", "2019-06-22 23:22:00.356081"], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 440ms (Views: 0.2ms | ActiveRecord: 5.2ms)
+Started GET "/api/v1/tasks" for 127.0.0.1 at 2019-06-22 23:22:00 +0000
+Processing by Api::V1::TasksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 0 AND user_id = 2)[0m
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 1 AND user_id = 2)[0m
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND (status = 2 AND user_id = 2)[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mbATwksGX9ly4-8xFkHRMA\":{\"token\":\"$2a$12$Wwf10EkJpSElMoCF1Oinbu5MSiKejcsRAC7AlwBc4wQQvxkbRBVs.\",\"expiry\":1562455320,\"last_token\":\"$2a$12$GyH/Q4jDP7OoZeaSBoHFJ.DE5QamRV8J9HuEi2ctigQT5YZIX7uHS\",\"updated_at\":\"2019-06-22T23:22:00.579Z\"}}"], ["updated_at", "2019-06-22 23:22:00.580073"], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 220ms (Views: 2.8ms | ActiveRecord: 4.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$6NfOyyc9YDXi9e13gzo/yeg3.cCz0E3SBuSKwXwz6PjzwOJa/FHAW"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:00.607794"], ["updated_at", "2019-06-22 23:22:00.607794"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:00 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"xCJo8saw-bZGrs66Fr8DkA\":{\"token\":\"$2a$12$ogVblSYqMSSIp1/k6FfIze57cVdLEeVdUy0mUbXskbDlwJQgRTxIW\",\"expiry\":1562455320}}"], ["updated_at", "2019-06-22 23:22:00.828306"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"xCJo8saw-bZGrs66Fr8DkA\":{\"token\":\"$2a$12$PAyXcBnd3R9fS4CNwxKEIerYayPZ2puD54L14qTfFSUhLaGUzYZPq\",\"expiry\":1562455320,\"last_token\":\"$2a$12$ogVblSYqMSSIp1/k6FfIze57cVdLEeVdUy0mUbXskbDlwJQgRTxIW\",\"updated_at\":\"2019-06-22T23:22:00.837Z\"}}"], ["updated_at", "2019-06-22 23:22:01.041082"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 427ms (Views: 0.2ms | ActiveRecord: 4.9ms)
+Started POST "/api/v1/tasks" for 127.0.0.1 at 2019-06-22 23:22:01 +0000
+Processing by Api::V1::TasksController#create as HTML
+  Parameters: {"task"=>{"name"=>"Benilde Moreira", "description"=>"Voluptate cum nesciunt ut quidem pariatur ipsum illo in.", "end_time"=>"2017-08-22"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTask Create (3.3ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 3], ["created_at", "2019-06-22 23:22:01.292853"], ["updated_at", "2019-06-22 23:22:01.292853"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"xCJo8saw-bZGrs66Fr8DkA\":{\"token\":\"$2a$12$PAyXcBnd3R9fS4CNwxKEIerYayPZ2puD54L14qTfFSUhLaGUzYZPq\",\"expiry\":1562455320,\"last_token\":\"$2a$12$ogVblSYqMSSIp1/k6FfIze57cVdLEeVdUy0mUbXskbDlwJQgRTxIW\",\"updated_at\":\"2019-06-22T23:22:01.303Z\"}}"], ["updated_at", "2019-06-22 23:22:01.304263"], ["id", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 241ms (Views: 0.5ms | ActiveRecord: 9.3ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (3.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$GjbqwnBFh996V4ygepCmh.9hUYKhhzNEdaUsv74Ws3c2FoGjhhGxe"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:01.346577"], ["updated_at", "2019-06-22 23:22:01.346577"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:01 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"y4tQUodMA0FK46Hr1Fn3nQ\":{\"token\":\"$2a$12$nqvt.c/QQBMOg7ljYOVPIupLxuOy2rKYwUzFQ.FkoZj0hmYyijLpa\",\"expiry\":1562455321}}"], ["updated_at", "2019-06-22 23:22:01.562226"], ["id", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"y4tQUodMA0FK46Hr1Fn3nQ\":{\"token\":\"$2a$12$P7bdgt0l2RYrLPjiB7Q0We/buYZkIDUi8etxw3ckNhgXbf2VaDCym\",\"expiry\":1562455321,\"last_token\":\"$2a$12$nqvt.c/QQBMOg7ljYOVPIupLxuOy2rKYwUzFQ.FkoZj0hmYyijLpa\",\"updated_at\":\"2019-06-22T23:22:01.570Z\"}}"], ["updated_at", "2019-06-22 23:22:01.775622"], ["id", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 427ms (Views: 0.2ms | ActiveRecord: 5.3ms)
+Started POST "/api/v1/tasks" for 127.0.0.1 at 2019-06-22 23:22:01 +0000
+Processing by Api::V1::TasksController#create as HTML
+  Parameters: {"task"=>{"name"=>"Benilde Moreira", "description"=>"Voluptate cum nesciunt ut quidem pariatur ipsum illo in.", "end_time"=>"2017-08-22"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 4], ["created_at", "2019-06-22 23:22:01.992488"], ["updated_at", "2019-06-22 23:22:01.992488"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"y4tQUodMA0FK46Hr1Fn3nQ\":{\"token\":\"$2a$12$P7bdgt0l2RYrLPjiB7Q0We/buYZkIDUi8etxw3ckNhgXbf2VaDCym\",\"expiry\":1562455321,\"last_token\":\"$2a$12$nqvt.c/QQBMOg7ljYOVPIupLxuOy2rKYwUzFQ.FkoZj0hmYyijLpa\",\"updated_at\":\"2019-06-22T23:22:02.001Z\"}}"], ["updated_at", "2019-06-22 23:22:02.001486"], ["id", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 221ms (Views: 0.3ms | ActiveRecord: 5.7ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$UJNFYLr2fhN8CNwOc0bVY.0UN.UDiRN/SBDXPhRbfpg8YffrSpsmi"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:02.029492"], ["updated_at", "2019-06-22 23:22:02.029492"]]
+  [1m[35m (2.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:02 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"g6MJNuIJvS2s3-qKfWdRow\":{\"token\":\"$2a$12$KpTR25EvOW0Sk7345FkB4usdOGxEueV2n4tdyeuNWyv.BSpNKsD6i\",\"expiry\":1562455322}}"], ["updated_at", "2019-06-22 23:22:02.249837"], ["id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"g6MJNuIJvS2s3-qKfWdRow\":{\"token\":\"$2a$12$Xse.eJBA5FV2ZpZnbrsfku9APl4NsOt8zqO26a5BLhPLyb4.WDn3i\",\"expiry\":1562455322,\"last_token\":\"$2a$12$KpTR25EvOW0Sk7345FkB4usdOGxEueV2n4tdyeuNWyv.BSpNKsD6i\",\"updated_at\":\"2019-06-22T23:22:02.259Z\"}}"], ["updated_at", "2019-06-22 23:22:02.463954"], ["id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 428ms (Views: 0.2ms | ActiveRecord: 5.6ms)
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "barbara@farrell.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "barbara@farrell.biz"], ["encrypted_password", "$2a$04$LQSZD97rnfm13i79MRDiie6wc78htQNViws.2jIXTVffksjdDGh3K"], ["email", "barbara@farrell.biz"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:02.474013"], ["updated_at", "2019-06-22 23:22:02.474013"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 6], ["created_at", "2019-06-22 23:22:02.480021"], ["updated_at", "2019-06-22 23:22:02.480021"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started PUT "/api/v1/tasks/3" for 127.0.0.1 at 2019-06-22 23:22:02 +0000
+Processing by Api::V1::TasksController#update as HTML
+  Parameters: {"task"=>{"name"=>"Elmina da Rosa", "description"=>"Sunt non doloremque qui iusto ad.", "end_time"=>"2018-12-24"}, "id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND "tasks"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "name" = $1, "description" = $2, "end_time" = $3, "updated_at" = $4 WHERE "tasks"."id" = $5[0m  [["name", "Elmina da Rosa"], ["description", "Sunt non doloremque qui iusto ad."], ["end_time", "2018-12-24"], ["updated_at", "2019-06-22 23:22:02.697484"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"g6MJNuIJvS2s3-qKfWdRow\":{\"token\":\"$2a$12$Xse.eJBA5FV2ZpZnbrsfku9APl4NsOt8zqO26a5BLhPLyb4.WDn3i\",\"expiry\":1562455322,\"last_token\":\"$2a$12$KpTR25EvOW0Sk7345FkB4usdOGxEueV2n4tdyeuNWyv.BSpNKsD6i\",\"updated_at\":\"2019-06-22T23:22:02.705Z\"}}"], ["updated_at", "2019-06-22 23:22:02.706392"], ["id", 5]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 224ms (Views: 0.3ms | ActiveRecord: 5.8ms)
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$zporK2NOu2z473nb/qUyN.Ygs8yvjkpJ6UGfUefvYqRXWDN6vC2WW"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:02.734298"], ["updated_at", "2019-06-22 23:22:02.734298"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:02 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"FXh6ZIt34IUghqDZWa8v-Q\":{\"token\":\"$2a$12$TFRMeHsjYAcxWKRe9yJMreiPolzgMU2YNct.8p3WGZHRu.kGqjm/W\",\"expiry\":1562455322}}"], ["updated_at", "2019-06-22 23:22:02.952269"], ["id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"FXh6ZIt34IUghqDZWa8v-Q\":{\"token\":\"$2a$12$Som7MTP0b9oxzvqyW0nOiu16P1FLCWlAUhyOqWZ3wO1FhBwLDbwxO\",\"expiry\":1562455322,\"last_token\":\"$2a$12$TFRMeHsjYAcxWKRe9yJMreiPolzgMU2YNct.8p3WGZHRu.kGqjm/W\",\"updated_at\":\"2019-06-22T23:22:02.961Z\"}}"], ["updated_at", "2019-06-22 23:22:03.166845"], ["id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 428ms (Views: 0.2ms | ActiveRecord: 5.6ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "barbara@farrell.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "barbara@farrell.biz"], ["encrypted_password", "$2a$04$xO/ce0vBj0wMHvmbAP/Jqew1RGuj4/7m2AP5E.7qIJJNfdBBVY2vG"], ["email", "barbara@farrell.biz"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:03.176801"], ["updated_at", "2019-06-22 23:22:03.176801"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 8], ["created_at", "2019-06-22 23:22:03.182665"], ["updated_at", "2019-06-22 23:22:03.182665"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started PUT "/api/v1/tasks/4" for 127.0.0.1 at 2019-06-22 23:22:03 +0000
+Processing by Api::V1::TasksController#update as HTML
+  Parameters: {"task"=>{"name"=>"Elmina da Rosa", "description"=>"Sunt non doloremque qui iusto ad.", "end_time"=>"2018-12-24"}, "id"=>"4"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND "tasks"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "name" = $1, "description" = $2, "end_time" = $3, "updated_at" = $4 WHERE "tasks"."id" = $5[0m  [["name", "Elmina da Rosa"], ["description", "Sunt non doloremque qui iusto ad."], ["end_time", "2018-12-24"], ["updated_at", "2019-06-22 23:22:03.398407"], ["id", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"FXh6ZIt34IUghqDZWa8v-Q\":{\"token\":\"$2a$12$Som7MTP0b9oxzvqyW0nOiu16P1FLCWlAUhyOqWZ3wO1FhBwLDbwxO\",\"expiry\":1562455322,\"last_token\":\"$2a$12$TFRMeHsjYAcxWKRe9yJMreiPolzgMU2YNct.8p3WGZHRu.kGqjm/W\",\"updated_at\":\"2019-06-22T23:22:03.406Z\"}}"], ["updated_at", "2019-06-22 23:22:03.407314"], ["id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 222ms (Views: 0.4ms | ActiveRecord: 5.8ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$6AZVywPf1Y6lKlO7kvWf7ut/edb42dq1SGEgheMyd5LEvlagEkRQa"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:03.436336"], ["updated_at", "2019-06-22 23:22:03.436336"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:03 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"lVXVlfMQl8DexbUT5F0Bsg\":{\"token\":\"$2a$12$TPf1D7sCZFsvKiZ/jtQc9euCnBZ9NQaFYmW0QbIBWht2gOItPNpUC\",\"expiry\":1562455323}}"], ["updated_at", "2019-06-22 23:22:03.655764"], ["id", 9]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"lVXVlfMQl8DexbUT5F0Bsg\":{\"token\":\"$2a$12$chkn/MuqyO7Yo5v/uV5MaODU1ffI2pGAypngD5wru2q11/r4Aokc6\",\"expiry\":1562455323,\"last_token\":\"$2a$12$TPf1D7sCZFsvKiZ/jtQc9euCnBZ9NQaFYmW0QbIBWht2gOItPNpUC\",\"updated_at\":\"2019-06-22T23:22:03.664Z\"}}"], ["updated_at", "2019-06-22 23:22:03.867695"], ["id", 9]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 428ms (Views: 0.2ms | ActiveRecord: 5.1ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Create (0.8ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 9], ["created_at", "2019-06-22 23:22:03.876314"], ["updated_at", "2019-06-22 23:22:03.876314"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 9], ["created_at", "2019-06-22 23:22:03.882372"], ["updated_at", "2019-06-22 23:22:03.882372"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 9], ["created_at", "2019-06-22 23:22:03.887837"], ["updated_at", "2019-06-22 23:22:03.887837"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 9], ["created_at", "2019-06-22 23:22:03.893118"], ["updated_at", "2019-06-22 23:22:03.893118"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 9], ["created_at", "2019-06-22 23:22:03.897898"], ["updated_at", "2019-06-22 23:22:03.897898"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/5" for 127.0.0.1 at 2019-06-22 23:22:03 +0000
+Processing by Api::V1::TasksController#destroy as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND "tasks"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2019-06-22 23:22:04.109929"], ["updated_at", "2019-06-22 23:22:04.113336"], ["id", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"lVXVlfMQl8DexbUT5F0Bsg\":{\"token\":\"$2a$12$chkn/MuqyO7Yo5v/uV5MaODU1ffI2pGAypngD5wru2q11/r4Aokc6\",\"expiry\":1562455323,\"last_token\":\"$2a$12$TPf1D7sCZFsvKiZ/jtQc9euCnBZ9NQaFYmW0QbIBWht2gOItPNpUC\",\"updated_at\":\"2019-06-22T23:22:04.120Z\"}}"], ["updated_at", "2019-06-22 23:22:04.121243"], ["id", 9]]
+  [1m[35m (0.8ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 223ms (Views: 0.1ms | ActiveRecord: 5.9ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$z/wC.GypZnmEKdHPXdhclewR0rJNiStIsPy7/vdiK6BOqCLsXuf.."], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:04.150791"], ["updated_at", "2019-06-22 23:22:04.150791"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:04 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"EiFZYBN5UahBnXnZulQeAg\":{\"token\":\"$2a$12$ZAepMlP6zgm36BcZrHtTt.CJ7Q93Befcp2nv8kH99947t2Z2ev.x.\",\"expiry\":1562455324}}"], ["updated_at", "2019-06-22 23:22:04.370669"], ["id", 10]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"EiFZYBN5UahBnXnZulQeAg\":{\"token\":\"$2a$12$kjJzKnKgVjE0YcHAsjjISuCOgQkY/KVxUZRuOLs1vf06IpGVHTwJ6\",\"expiry\":1562455324,\"last_token\":\"$2a$12$ZAepMlP6zgm36BcZrHtTt.CJ7Q93Befcp2nv8kH99947t2Z2ev.x.\",\"updated_at\":\"2019-06-22T23:22:04.379Z\"}}"], ["updated_at", "2019-06-22 23:22:04.582570"], ["id", 10]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 427ms (Views: 0.2ms | ActiveRecord: 4.8ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 10], ["created_at", "2019-06-22 23:22:04.591612"], ["updated_at", "2019-06-22 23:22:04.591612"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 10], ["created_at", "2019-06-22 23:22:04.596954"], ["updated_at", "2019-06-22 23:22:04.596954"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 10], ["created_at", "2019-06-22 23:22:04.602327"], ["updated_at", "2019-06-22 23:22:04.602327"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 10], ["created_at", "2019-06-22 23:22:04.607275"], ["updated_at", "2019-06-22 23:22:04.607275"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 10], ["created_at", "2019-06-22 23:22:04.612027"], ["updated_at", "2019-06-22 23:22:04.612027"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/10" for 127.0.0.1 at 2019-06-22 23:22:04 +0000
+Processing by Api::V1::TasksController#destroy as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND "tasks"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2019-06-22 23:22:04.827847"], ["updated_at", "2019-06-22 23:22:04.831521"], ["id", 10]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"EiFZYBN5UahBnXnZulQeAg\":{\"token\":\"$2a$12$kjJzKnKgVjE0YcHAsjjISuCOgQkY/KVxUZRuOLs1vf06IpGVHTwJ6\",\"expiry\":1562455324,\"last_token\":\"$2a$12$ZAepMlP6zgm36BcZrHtTt.CJ7Q93Befcp2nv8kH99947t2Z2ev.x.\",\"updated_at\":\"2019-06-22T23:22:04.840Z\"}}"], ["updated_at", "2019-06-22 23:22:04.840576"], ["id", 10]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 228ms (Views: 0.1ms | ActiveRecord: 6.0ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$Mw4G4coEkallQId1kvbDoOfzbT1dKNwQWakRM8yPjxgwHj.Kz.f12"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:04.875838"], ["updated_at", "2019-06-22 23:22:04.875838"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:04 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"cdzhR-Wgoq5CWve3FSl7Mw\":{\"token\":\"$2a$12$lNJxCctyptbTEFbw/HaApuOJVX292KALrP9VaQoJMQLeBgysHeKAe\",\"expiry\":1562455324}}"], ["updated_at", "2019-06-22 23:22:05.097481"], ["id", 11]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"cdzhR-Wgoq5CWve3FSl7Mw\":{\"token\":\"$2a$12$rgk9lPAvF.Kodr4k.Pwb6.yGZariHOjPW37lX6dRr3B9Czas9Lv.W\",\"expiry\":1562455325,\"last_token\":\"$2a$12$lNJxCctyptbTEFbw/HaApuOJVX292KALrP9VaQoJMQLeBgysHeKAe\",\"updated_at\":\"2019-06-22T23:22:05.108Z\"}}"], ["updated_at", "2019-06-22 23:22:05.312649"], ["id", 11]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 436ms (Views: 0.3ms | ActiveRecord: 5.2ms)
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 11], ["created_at", "2019-06-22 23:22:05.322391"], ["updated_at", "2019-06-22 23:22:05.322391"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 11], ["created_at", "2019-06-22 23:22:05.328819"], ["updated_at", "2019-06-22 23:22:05.328819"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 11], ["created_at", "2019-06-22 23:22:05.334498"], ["updated_at", "2019-06-22 23:22:05.334498"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 11], ["created_at", "2019-06-22 23:22:05.340158"], ["updated_at", "2019-06-22 23:22:05.340158"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 11], ["created_at", "2019-06-22 23:22:05.345574"], ["updated_at", "2019-06-22 23:22:05.345574"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/15" for 127.0.0.1 at 2019-06-22 23:22:05 +0000
+Processing by Api::V1::TasksController#destroy as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL AND "tasks"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2019-06-22 23:22:05.557258"], ["updated_at", "2019-06-22 23:22:05.561295"], ["id", 15]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"cdzhR-Wgoq5CWve3FSl7Mw\":{\"token\":\"$2a$12$rgk9lPAvF.Kodr4k.Pwb6.yGZariHOjPW37lX6dRr3B9Czas9Lv.W\",\"expiry\":1562455325,\"last_token\":\"$2a$12$lNJxCctyptbTEFbw/HaApuOJVX292KALrP9VaQoJMQLeBgysHeKAe\",\"updated_at\":\"2019-06-22T23:22:05.569Z\"}}"], ["updated_at", "2019-06-22 23:22:05.570318"], ["id", 11]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 224ms (Views: 0.1ms | ActiveRecord: 5.3ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (1.8ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$zlvXNx.TIxkGpkT3vZ9QKOv15o74fABJJ1H1lTHu8tHBFyr/cT/PG"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:05.608824"], ["updated_at", "2019-06-22 23:22:05.608824"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:05 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"UZafDTlS1BTc5-jDJPwmkA\":{\"token\":\"$2a$12$Bsei1A5Y/g1T24grxAb6oe3x5s1uKWyq14FOpP/Wr1SUrZW1gFTXC\",\"expiry\":1562455325}}"], ["updated_at", "2019-06-22 23:22:05.824942"], ["id", 12]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"UZafDTlS1BTc5-jDJPwmkA\":{\"token\":\"$2a$12$PWY/oeAPnUhnZ84.2XRwpuiP3GN9Qwc.SQWpyec/S00cDmgGSAxCq\",\"expiry\":1562455325,\"last_token\":\"$2a$12$Bsei1A5Y/g1T24grxAb6oe3x5s1uKWyq14FOpP/Wr1SUrZW1gFTXC\",\"updated_at\":\"2019-06-22T23:22:05.833Z\"}}"], ["updated_at", "2019-06-22 23:22:06.039239"], ["id", 12]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 430ms (Views: 0.2ms | ActiveRecord: 5.3ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 12], ["created_at", "2019-06-22 23:22:06.048870"], ["updated_at", "2019-06-22 23:22:06.048870"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 12], ["created_at", "2019-06-22 23:22:06.053651"], ["updated_at", "2019-06-22 23:22:06.053651"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 12], ["created_at", "2019-06-22 23:22:06.059545"], ["updated_at", "2019-06-22 23:22:06.059545"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 12], ["created_at", "2019-06-22 23:22:06.064990"], ["updated_at", "2019-06-22 23:22:06.064990"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 12], ["created_at", "2019-06-22 23:22:06.070072"], ["updated_at", "2019-06-22 23:22:06.070072"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:06.072897"], ["deleted_at", "2019-06-22 23:22:06.071992"], ["id", 20]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/api/v1/tasks/20/recycle" for 127.0.0.1 at 2019-06-22 23:22:06 +0000
+Processing by Api::V1::TasksController#recycle as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", nil], ["updated_at", "2019-06-22 23:22:06.288732"], ["id", 20]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"UZafDTlS1BTc5-jDJPwmkA\":{\"token\":\"$2a$12$PWY/oeAPnUhnZ84.2XRwpuiP3GN9Qwc.SQWpyec/S00cDmgGSAxCq\",\"expiry\":1562455325,\"last_token\":\"$2a$12$Bsei1A5Y/g1T24grxAb6oe3x5s1uKWyq14FOpP/Wr1SUrZW1gFTXC\",\"updated_at\":\"2019-06-22T23:22:06.296Z\"}}"], ["updated_at", "2019-06-22 23:22:06.296833"], ["id", 12]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 223ms (Views: 0.2ms | ActiveRecord: 6.1ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$cIRzkxiK96d40LPV20f1weJgrn7uJglAFMpYkd/MMZodIGYzJ2Lhe"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:06.324043"], ["updated_at", "2019-06-22 23:22:06.324043"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:06 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Xd5L6IBFU3Eb1G_YcH41HA\":{\"token\":\"$2a$12$ZC2z9EH01G/Hm8PK8i95Xe.Nvp/F0Y5IEjnKtiS6uYqAyfzU7bNA2\",\"expiry\":1562455326}}"], ["updated_at", "2019-06-22 23:22:06.542197"], ["id", 13]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Xd5L6IBFU3Eb1G_YcH41HA\":{\"token\":\"$2a$12$0tdplWSDSP8HmXoZWGrs4eOfiUgVerHilh2vboGVW0uuo1hrHNBpi\",\"expiry\":1562455326,\"last_token\":\"$2a$12$ZC2z9EH01G/Hm8PK8i95Xe.Nvp/F0Y5IEjnKtiS6uYqAyfzU7bNA2\",\"updated_at\":\"2019-06-22T23:22:06.550Z\"}}"], ["updated_at", "2019-06-22 23:22:06.758157"], ["id", 13]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 430ms (Views: 0.2ms | ActiveRecord: 5.4ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 13], ["created_at", "2019-06-22 23:22:06.767530"], ["updated_at", "2019-06-22 23:22:06.767530"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 13], ["created_at", "2019-06-22 23:22:06.772698"], ["updated_at", "2019-06-22 23:22:06.772698"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 13], ["created_at", "2019-06-22 23:22:06.777971"], ["updated_at", "2019-06-22 23:22:06.777971"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 13], ["created_at", "2019-06-22 23:22:06.784074"], ["updated_at", "2019-06-22 23:22:06.784074"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 13], ["created_at", "2019-06-22 23:22:06.789020"], ["updated_at", "2019-06-22 23:22:06.789020"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:06.792197"], ["deleted_at", "2019-06-22 23:22:06.791249"], ["id", 25]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/api/v1/tasks/25/recycle" for 127.0.0.1 at 2019-06-22 23:22:06 +0000
+Processing by Api::V1::TasksController#recycle as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", nil], ["updated_at", "2019-06-22 23:22:07.006562"], ["id", 25]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Xd5L6IBFU3Eb1G_YcH41HA\":{\"token\":\"$2a$12$0tdplWSDSP8HmXoZWGrs4eOfiUgVerHilh2vboGVW0uuo1hrHNBpi\",\"expiry\":1562455326,\"last_token\":\"$2a$12$ZC2z9EH01G/Hm8PK8i95Xe.Nvp/F0Y5IEjnKtiS6uYqAyfzU7bNA2\",\"updated_at\":\"2019-06-22T23:22:07.014Z\"}}"], ["updated_at", "2019-06-22 23:22:07.015061"], ["id", 13]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 222ms (Views: 0.2ms | ActiveRecord: 5.5ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$9aRse9MlncN.WxRNuQkorep13E7txjEGWj3m37kekkET81mdD2DsS"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:07.040889"], ["updated_at", "2019-06-22 23:22:07.040889"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:07 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"pzTgnXdsE1Ziq8bj7ij27Q\":{\"token\":\"$2a$12$NwEvwU1BeC0KlbeB3C878uQDTUAE9kTIt/DqTVWpczxqtRiZKFTri\",\"expiry\":1562455327}}"], ["updated_at", "2019-06-22 23:22:07.265309"], ["id", 14]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"pzTgnXdsE1Ziq8bj7ij27Q\":{\"token\":\"$2a$12$63jXeK84p2dtTxjoNapem.1xjm21rQO.zphZUKjTz4HD0agb6DDCS\",\"expiry\":1562455327,\"last_token\":\"$2a$12$NwEvwU1BeC0KlbeB3C878uQDTUAE9kTIt/DqTVWpczxqtRiZKFTri\",\"updated_at\":\"2019-06-22T23:22:07.275Z\"}}"], ["updated_at", "2019-06-22 23:22:07.479728"], ["id", 14]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 432ms (Views: 0.2ms | ActiveRecord: 5.1ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 14], ["created_at", "2019-06-22 23:22:07.489340"], ["updated_at", "2019-06-22 23:22:07.489340"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 14], ["created_at", "2019-06-22 23:22:07.496469"], ["updated_at", "2019-06-22 23:22:07.496469"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 14], ["created_at", "2019-06-22 23:22:07.502276"], ["updated_at", "2019-06-22 23:22:07.502276"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 14], ["created_at", "2019-06-22 23:22:07.507572"], ["updated_at", "2019-06-22 23:22:07.507572"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 14], ["created_at", "2019-06-22 23:22:07.512435"], ["updated_at", "2019-06-22 23:22:07.512435"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:07.516053"], ["deleted_at", "2019-06-22 23:22:07.514419"], ["id", 30]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/api/v1/tasks/30/recycle" for 127.0.0.1 at 2019-06-22 23:22:07 +0000
+Processing by Api::V1::TasksController#recycle as HTML
+  Parameters: {"id"=>"30"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", nil], ["updated_at", "2019-06-22 23:22:07.731515"], ["id", 30]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"pzTgnXdsE1Ziq8bj7ij27Q\":{\"token\":\"$2a$12$63jXeK84p2dtTxjoNapem.1xjm21rQO.zphZUKjTz4HD0agb6DDCS\",\"expiry\":1562455327,\"last_token\":\"$2a$12$NwEvwU1BeC0KlbeB3C878uQDTUAE9kTIt/DqTVWpczxqtRiZKFTri\",\"updated_at\":\"2019-06-22T23:22:07.739Z\"}}"], ["updated_at", "2019-06-22 23:22:07.739717"], ["id", 14]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 222ms (Views: 0.1ms | ActiveRecord: 5.2ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$pNfHjcUiXw8VslP8rYgxIuA2l4SjBVZRK.2LDVq7udqGqvy/.QYHO"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:07.767458"], ["updated_at", "2019-06-22 23:22:07.767458"]]
+  [1m[35m (2.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:07 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"kteVtBfYZvo8ro1hPo_rjg\":{\"token\":\"$2a$12$527v7mNRxMpeWO/1Tvu6kO9yhW29LrB7TgTqwFYSi8TVERXFvytcy\",\"expiry\":1562455327}}"], ["updated_at", "2019-06-22 23:22:07.986076"], ["id", 15]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"kteVtBfYZvo8ro1hPo_rjg\":{\"token\":\"$2a$12$Rrq61OedguKsX9i53GB89uIRzrUIAwEMWm6MBBGI6boyMFBu2DR42\",\"expiry\":1562455327,\"last_token\":\"$2a$12$527v7mNRxMpeWO/1Tvu6kO9yhW29LrB7TgTqwFYSi8TVERXFvytcy\",\"updated_at\":\"2019-06-22T23:22:07.994Z\"}}"], ["updated_at", "2019-06-22 23:22:08.200527"], ["id", 15]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 428ms (Views: 0.2ms | ActiveRecord: 5.9ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 15], ["created_at", "2019-06-22 23:22:08.209207"], ["updated_at", "2019-06-22 23:22:08.209207"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 15], ["created_at", "2019-06-22 23:22:08.214994"], ["updated_at", "2019-06-22 23:22:08.214994"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 15], ["created_at", "2019-06-22 23:22:08.220517"], ["updated_at", "2019-06-22 23:22:08.220517"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 15], ["created_at", "2019-06-22 23:22:08.225252"], ["updated_at", "2019-06-22 23:22:08.225252"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 15], ["created_at", "2019-06-22 23:22:08.231140"], ["updated_at", "2019-06-22 23:22:08.231140"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.234481"], ["deleted_at", "2019-06-22 23:22:08.233405"], ["id", 35]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.237620"], ["deleted_at", "2019-06-22 23:22:08.236527"], ["id", 36]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.240523"], ["deleted_at", "2019-06-22 23:22:08.239557"], ["id", 37]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.244051"], ["deleted_at", "2019-06-22 23:22:08.242956"], ["id", 38]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.247220"], ["deleted_at", "2019-06-22 23:22:08.246174"], ["id", 39]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/api/v1/tasks/destroyed" for 127.0.0.1 at 2019-06-22 23:22:08 +0000
+Processing by Api::V1::TasksController#destroyed as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (user_id = 15) AND "tasks"."deleted_at" IS NOT NULL[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"kteVtBfYZvo8ro1hPo_rjg\":{\"token\":\"$2a$12$Rrq61OedguKsX9i53GB89uIRzrUIAwEMWm6MBBGI6boyMFBu2DR42\",\"expiry\":1562455327,\"last_token\":\"$2a$12$527v7mNRxMpeWO/1Tvu6kO9yhW29LrB7TgTqwFYSi8TVERXFvytcy\",\"updated_at\":\"2019-06-22T23:22:08.464Z\"}}"], ["updated_at", "2019-06-22 23:22:08.465029"], ["id", 15]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 217ms (Views: 2.5ms | ActiveRecord: 4.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$58CfDVdouU.BCNzwVDja4eVNS92MweKNMuyuRVgKS.zI4vfH0SCXO"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:08.492694"], ["updated_at", "2019-06-22 23:22:08.492694"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:08 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"RaNJJ9bOvncT5MV4Mnq4jA\":{\"token\":\"$2a$12$BeTkuXDZSA6k5VkNdmFcReRG89w0SpcyNGbALCNF7294PDsUB964.\",\"expiry\":1562455328}}"], ["updated_at", "2019-06-22 23:22:08.714415"], ["id", 16]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"RaNJJ9bOvncT5MV4Mnq4jA\":{\"token\":\"$2a$12$cHq51CyF7ZVMmdL6tNVPz.u7b2mc3cidAby4/UMyTpj59PEzhAPbW\",\"expiry\":1562455328,\"last_token\":\"$2a$12$BeTkuXDZSA6k5VkNdmFcReRG89w0SpcyNGbALCNF7294PDsUB964.\",\"updated_at\":\"2019-06-22T23:22:08.723Z\"}}"], ["updated_at", "2019-06-22 23:22:08.931312"], ["id", 16]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 432ms (Views: 0.2ms | ActiveRecord: 4.8ms)
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 16], ["created_at", "2019-06-22 23:22:08.941230"], ["updated_at", "2019-06-22 23:22:08.941230"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 16], ["created_at", "2019-06-22 23:22:08.948408"], ["updated_at", "2019-06-22 23:22:08.948408"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 16], ["created_at", "2019-06-22 23:22:08.954652"], ["updated_at", "2019-06-22 23:22:08.954652"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 16], ["created_at", "2019-06-22 23:22:08.963555"], ["updated_at", "2019-06-22 23:22:08.963555"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 16], ["created_at", "2019-06-22 23:22:08.970373"], ["updated_at", "2019-06-22 23:22:08.970373"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.974213"], ["deleted_at", "2019-06-22 23:22:08.973140"], ["id", 40]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.977495"], ["deleted_at", "2019-06-22 23:22:08.976314"], ["id", 41]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.980908"], ["deleted_at", "2019-06-22 23:22:08.979697"], ["id", 42]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.984869"], ["deleted_at", "2019-06-22 23:22:08.983133"], ["id", 43]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1, "deleted_at" = $2 WHERE "tasks"."id" = $3[0m  [["updated_at", "2019-06-22 23:22:08.988491"], ["deleted_at", "2019-06-22 23:22:08.987368"], ["id", 44]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/api/v1/tasks/destroyed" for 127.0.0.1 at 2019-06-22 23:22:08 +0000
+Processing by Api::V1::TasksController#destroyed as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (user_id = 16) AND "tasks"."deleted_at" IS NOT NULL[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"RaNJJ9bOvncT5MV4Mnq4jA\":{\"token\":\"$2a$12$cHq51CyF7ZVMmdL6tNVPz.u7b2mc3cidAby4/UMyTpj59PEzhAPbW\",\"expiry\":1562455328,\"last_token\":\"$2a$12$BeTkuXDZSA6k5VkNdmFcReRG89w0SpcyNGbALCNF7294PDsUB964.\",\"updated_at\":\"2019-06-22T23:22:09.217Z\"}}"], ["updated_at", "2019-06-22 23:22:09.217773"], ["id", 16]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 229ms (Views: 2.7ms | ActiveRecord: 3.9ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (1.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (3.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$Yr4jpFfVD/U8XvqixjgCM.O2vDWEvMm8uXLJm.wVRQ48gvjnXjyGW"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:09.257937"], ["updated_at", "2019-06-22 23:22:09.257937"]]
+  [1m[35m (0.8ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:09 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"tbVi1nMVU_39_SthrxV--A\":{\"token\":\"$2a$12$ka9SicsFgiesQwD9oPO/7eytsRHqA5gxe5L73KenTejeFTlWnhm8q\",\"expiry\":1562455329}}"], ["updated_at", "2019-06-22 23:22:09.486980"], ["id", 17]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"tbVi1nMVU_39_SthrxV--A\":{\"token\":\"$2a$12$i8Qxm.1nusR763z.fX0KP.NmGbG43zAmMamvGZcGngxoEXfrICK32\",\"expiry\":1562455329,\"last_token\":\"$2a$12$ka9SicsFgiesQwD9oPO/7eytsRHqA5gxe5L73KenTejeFTlWnhm8q\",\"updated_at\":\"2019-06-22T23:22:09.496Z\"}}"], ["updated_at", "2019-06-22 23:22:09.702898"], ["id", 17]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 437ms (Views: 0.2ms | ActiveRecord: 5.4ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 17], ["created_at", "2019-06-22 23:22:09.711241"], ["updated_at", "2019-06-22 23:22:09.711241"]]
+  [1m[35m (0.8ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 17], ["created_at", "2019-06-22 23:22:09.719113"], ["updated_at", "2019-06-22 23:22:09.719113"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 17], ["created_at", "2019-06-22 23:22:09.724020"], ["updated_at", "2019-06-22 23:22:09.724020"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 17], ["created_at", "2019-06-22 23:22:09.730458"], ["updated_at", "2019-06-22 23:22:09.730458"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 17], ["created_at", "2019-06-22 23:22:09.735774"], ["updated_at", "2019-06-22 23:22:09.735774"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/45/delete" for 127.0.0.1 at 2019-06-22 23:22:09 +0000
+Processing by Api::V1::TasksController#delete as HTML
+  Parameters: {"id"=>"45"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Destroy (0.5ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = $1[0m  [["id", 45]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"tbVi1nMVU_39_SthrxV--A\":{\"token\":\"$2a$12$i8Qxm.1nusR763z.fX0KP.NmGbG43zAmMamvGZcGngxoEXfrICK32\",\"expiry\":1562455329,\"last_token\":\"$2a$12$ka9SicsFgiesQwD9oPO/7eytsRHqA5gxe5L73KenTejeFTlWnhm8q\",\"updated_at\":\"2019-06-22T23:22:09.961Z\"}}"], ["updated_at", "2019-06-22 23:22:09.961595"], ["id", 17]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 225ms (Views: 0.1ms | ActiveRecord: 4.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$zv4pmdYuk.MUSO1XBtQyEexDxTHYO5y8zDAhwkcm.pqYAEMw3LW7y"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:09.988987"], ["updated_at", "2019-06-22 23:22:09.988987"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:09 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"WwtNpBI58ijox0iXt7K6jA\":{\"token\":\"$2a$12$uz2pMr8IQJfZTQcZ9jf6Fuua2PcoiGEJ9WjVBr8VaqjOWLcawszwC\",\"expiry\":1562455330}}"], ["updated_at", "2019-06-22 23:22:10.215058"], ["id", 18]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"WwtNpBI58ijox0iXt7K6jA\":{\"token\":\"$2a$12$7JTKUJ4ntVHsqLQ8o5mxvO182YVn.NVpUBcUTR5/gvb.abmLazOw6\",\"expiry\":1562455330,\"last_token\":\"$2a$12$uz2pMr8IQJfZTQcZ9jf6Fuua2PcoiGEJ9WjVBr8VaqjOWLcawszwC\",\"updated_at\":\"2019-06-22T23:22:10.223Z\"}}"], ["updated_at", "2019-06-22 23:22:10.433593"], ["id", 18]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 439ms (Views: 0.2ms | ActiveRecord: 5.0ms)
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 18], ["created_at", "2019-06-22 23:22:10.442322"], ["updated_at", "2019-06-22 23:22:10.442322"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 18], ["created_at", "2019-06-22 23:22:10.448454"], ["updated_at", "2019-06-22 23:22:10.448454"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 18], ["created_at", "2019-06-22 23:22:10.453706"], ["updated_at", "2019-06-22 23:22:10.453706"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 18], ["created_at", "2019-06-22 23:22:10.459910"], ["updated_at", "2019-06-22 23:22:10.459910"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 18], ["created_at", "2019-06-22 23:22:10.465250"], ["updated_at", "2019-06-22 23:22:10.465250"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/50/delete" for 127.0.0.1 at 2019-06-22 23:22:10 +0000
+Processing by Api::V1::TasksController#delete as HTML
+  Parameters: {"id"=>"50"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = $1[0m  [["id", 50]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"WwtNpBI58ijox0iXt7K6jA\":{\"token\":\"$2a$12$7JTKUJ4ntVHsqLQ8o5mxvO182YVn.NVpUBcUTR5/gvb.abmLazOw6\",\"expiry\":1562455330,\"last_token\":\"$2a$12$uz2pMr8IQJfZTQcZ9jf6Fuua2PcoiGEJ9WjVBr8VaqjOWLcawszwC\",\"updated_at\":\"2019-06-22T23:22:10.685Z\"}}"], ["updated_at", "2019-06-22 23:22:10.686331"], ["id", 18]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 221ms (Views: 0.1ms | ActiveRecord: 4.9ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "mica_watsica@wisozk.us"], ["encrypted_password", "$2a$04$QhCJSkLbn4a.CBgopDJ8vuaE8xk5kn38.CIrLMCiIvgJf9eMSOl/i"], ["email", "mica_watsica@wisozk.us"], ["tokens", "{}"], ["created_at", "2019-06-22 23:22:10.713602"], ["updated_at", "2019-06-22 23:22:10.713602"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/sign_in" for 127.0.0.1 at 2019-06-22 23:22:10 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"mica_watsica@wisozk.us", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "mica_watsica@wisozk.us"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mk1DzwW5HqvggC7PImbrzw\":{\"token\":\"$2a$12$ipiiETu4qv2m7tX1dG2W4uGOQfnezUp/xjZqrkbz4mIdezXb10kNe\",\"expiry\":1562455330}}"], ["updated_at", "2019-06-22 23:22:10.933817"], ["id", 19]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mk1DzwW5HqvggC7PImbrzw\":{\"token\":\"$2a$12$rCKdjMXFpgtIZYrklzvxm.wW00kqYB3/1rwgs3/K9UynRuqmovEU2\",\"expiry\":1562455330,\"last_token\":\"$2a$12$ipiiETu4qv2m7tX1dG2W4uGOQfnezUp/xjZqrkbz4mIdezXb10kNe\",\"updated_at\":\"2019-06-22T23:22:10.942Z\"}}"], ["updated_at", "2019-06-22 23:22:11.146267"], ["id", 19]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 428ms (Views: 0.2ms | ActiveRecord: 4.8ms)
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benilde Moreira"], ["description", "Voluptate cum nesciunt ut quidem pariatur ipsum illo in."], ["end_time", "2017-08-22"], ["status", 0], ["user_id", 19], ["created_at", "2019-06-22 23:22:11.154749"], ["updated_at", "2019-06-22 23:22:11.154749"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anésia da Cruz"], ["description", "Necessitatibus fugiat iusto omnis aut molestiae sunt tenetur doloremque."], ["end_time", "2019-03-04"], ["status", 0], ["user_id", 19], ["created_at", "2019-06-22 23:22:11.160776"], ["updated_at", "2019-06-22 23:22:11.160776"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Adeilda Moreira"], ["description", "Omnis sint sit nihil velit dolores."], ["end_time", "2015-07-01"], ["status", 0], ["user_id", 19], ["created_at", "2019-06-22 23:22:11.167129"], ["updated_at", "2019-06-22 23:22:11.167129"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Daina Pires"], ["description", "Asperiores architecto voluptatum et alias magnam odit quia dignissimos."], ["end_time", "2017-07-12"], ["status", 0], ["user_id", 19], ["created_at", "2019-06-22 23:22:11.172093"], ["updated_at", "2019-06-22 23:22:11.172093"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "end_time", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anieta Monteiro"], ["description", "Nisi recusandae ipsum corrupti quibusdam quasi."], ["end_time", "2017-08-28"], ["status", 0], ["user_id", 19], ["created_at", "2019-06-22 23:22:11.177359"], ["updated_at", "2019-06-22 23:22:11.177359"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/api/v1/tasks/55/delete" for 127.0.0.1 at 2019-06-22 23:22:11 +0000
+Processing by Api::V1::TasksController#delete as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "mica_watsica@wisozk.us"], ["LIMIT", 1]]
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTask Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = $1[0m  [["id", 55]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[37mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"mk1DzwW5HqvggC7PImbrzw\":{\"token\":\"$2a$12$rCKdjMXFpgtIZYrklzvxm.wW00kqYB3/1rwgs3/K9UynRuqmovEU2\",\"expiry\":1562455330,\"last_token\":\"$2a$12$ipiiETu4qv2m7tX1dG2W4uGOQfnezUp/xjZqrkbz4mIdezXb10kNe\",\"updated_at\":\"2019-06-22T23:22:11.396Z\"}}"], ["updated_at", "2019-06-22 23:22:11.396927"], ["id", 19]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 219ms (Views: 0.1ms | ActiveRecord: 4.9ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m

@@ -1,6 +1,5 @@
 import API from '../../../api';
 import {setHeaders } from '../../../helpers/session';
-import { push } from 'react-router-redux'
 
 export function signUp({name, email, password, password_confirmation}) {
     console.log(name, email, password, password_confirmation);
@@ -12,8 +11,8 @@ export function signUp({name, email, password, password_confirmation}) {
             .then((response)=>{
                 setHeaders(response.headers);
                 window.Materialize.toast('Register Successful', 4000, 'green');
+                window.location.replace("http://localhost:3001/dashboard/tasks");
                 // dispatch(push('/dashboard'))
-                // window.location.replace("http://localhost:3001/dashboard")
 
             })
             .catch((error) => {
