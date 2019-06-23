@@ -21,7 +21,6 @@ const CardForm = styled(Card)`
     display: ${props => props.hide ? "none" : "unset"} !important;
     background-color: white;
     width: 50%;
-    display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),

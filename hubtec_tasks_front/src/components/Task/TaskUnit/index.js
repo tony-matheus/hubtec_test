@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Row, Col, Card, Icon, Textarea, TextInput} from 'react-materialize';
+import {Row, Col, Card, Textarea, TextInput} from 'react-materialize';
 import {FormFieldButton, ListFields} from '../../../objects/FormField';
 import InvisibleButton from '../../../objects/InvisibleButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -50,11 +50,9 @@ export default class TaskUnit extends Component {
     };
 
     showEdit = event => {
-        event.preventDefault()
-        console.log("saudhasudh")
-        if(this.props.status == "to_do"){
-            console.log("saudhasudh")
-            this.setState({hide: !this.state.hide, task: this.props})
+        event.preventDefault();
+        if(this.props.status === "to_do"){
+            this.setState({hide: !this.state.hide, task: this.props});
         }
     };
 
@@ -95,7 +93,7 @@ export default class TaskUnit extends Component {
                                         hide={this.props.status === "done" }
                                         onClick={this.showEdit}>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faPencilAlt}
                                             size={"1x"}
                                             onClick={this.showEdit}
@@ -106,7 +104,7 @@ export default class TaskUnit extends Component {
                                         hide={this.props.status !== "in_progress"}
                                         onClick={(this.props.status === "in_progress") ? this.update_task_status_to_do : this.update_task_status_done }>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faArrowLeft}
                                             size={"1x"}
                                             onClick={(this.props.status === "in_progress") ? this.update_task_status_to_do : this.update_task_status_done }
@@ -117,7 +115,7 @@ export default class TaskUnit extends Component {
                                         hide={this.props.status === "done"}
                                         onClick={(this.props.status === "to_do") ? this.update_task_status_in_progress : this.update_task_status_done }>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faArrowRight}
                                             size={"1x"}
                                             onClick={(this.props.status === "to_do") ? this.update_task_status_in_progress : this.update_task_status_done }
@@ -126,7 +124,7 @@ export default class TaskUnit extends Component {
                                     </InvisibleButton>
                                     <InvisibleButton onClick={this.delete_task}>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faEraser}
                                             size={"1x"}
                                             onClick={this.delete_task}
@@ -140,7 +138,7 @@ export default class TaskUnit extends Component {
                                         big
                                         onClick={this.recycle_task}>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faTrashRestoreAlt}
                                             size={"2x"}
                                             onClick={this.recycle_task}
@@ -151,7 +149,7 @@ export default class TaskUnit extends Component {
                                         big
                                         onClick={this.true_delete_task}>
                                         <FontAwesomeIcon
-                                            style={"cursor: pointer"}
+                                            style={{cursor: "pointer"}}
                                             icon={faEraser}
                                             size={"2x"}
                                             onClick={this.true_delete_task}

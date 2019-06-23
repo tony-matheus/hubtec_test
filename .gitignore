@@ -27,4 +27,5 @@
 \.DS_Store
 
 \hubtec_tasks_front/node_modules/
+hubtec_tasks_api/tmp/cache/
 

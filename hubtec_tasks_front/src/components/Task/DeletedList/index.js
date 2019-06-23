@@ -5,10 +5,6 @@ import ColumnList from '../../../objects/ColumnList';
 import {Scroll, ContainerInline} from '../../../objects/View'
 
 class DeletedTaskList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let deleted = this.props.deleted.length ? (this.props.deleted) : [];
         return (

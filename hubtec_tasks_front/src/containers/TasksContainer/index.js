@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {createTask, deleteTask, update_task_status, logout} from "./actions";
+import {createTask, deleteTask, update_task_status} from "./actions";
+import {logout} from "../Auth/actions";
 import TaskNew from "../../components/Task/TaskNew";
 import {Row, Col} from 'react-materialize';
 import TaskList from "../../components/Task/List";

@@ -23,6 +23,20 @@ RSpec.describe Task, type: :model do
       task.save
       expect(task).to be_valid
     end
+
+    context 'end_time' do
+      it 'must not be in the past' do
+        task.end_time = 1.week.ago.beginning_of_week
+        task.save
+        expect(task).to_not be_valid
+      end
+
+      it 'must be today or after' do
+        task.end_time = Date.today + 1.week
+        task.save
+        expect(task).to be_valid
+      end
+    end
   end
 
   describe 'Self Methods' do
@@ -93,6 +107,7 @@ RSpec.describe Task, type: :model do
         tasks = create_list(:task, 3, :to_do, user_id: @user_id)
         tasks.first.soft_delete
       end
+
       it 'should return deleted tasks' do
         tasks = Task.find_deleted_tasks(@user_id)
         expect(tasks.length).to be == 1
@@ -122,9 +137,8 @@ RSpec.describe Task, type: :model do
     context '#recycle' do
       it 'should recycle deleted tasks' do
         task_id = @tasks.first.id
-        # @tasks.first.recycle
+        @tasks.first.recycle
         tasks = Task.all
-        binding.pry
         expect(tasks.length).to be == 3
       end
     end

@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :task do
     name { FFaker::NameBR.unique.name }
     description { FFaker::Lorem.unique.phrase }
-    end_time { FFaker::Time.date }
+    end_time { Date.today }
     trait :with_user do
       user_id { create(:user).id }
     end

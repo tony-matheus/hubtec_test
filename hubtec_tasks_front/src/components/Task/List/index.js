@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import {Row, Col, Card, Icon, Dropdown, NavItem} from 'react-materialize';
 import TaskUnit from "../TaskUnit";
 import Title from '../../../objects/Title';
 import ColumnList from '../../../objects/ColumnList';
