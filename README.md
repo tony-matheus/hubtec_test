@@ -1,9 +1,13 @@
 <h2>TEST  HUBTEC  - Tutorial step by step to run this api</h2>
 <h5>Click <a href="https://hubtec-front.herokuapp.com/auth/sign-up">Here</a>, to see the project running on heroku.</h5>
+<h4>Description</h4>
+this is software that allows people to manage their day to day tasks.
+React and Ruby on Rails API, because I really like rails, I fell in love with the ruby language, I chose to use react and not Rails MVC, because I'm learning React, I accepted the challenge of doing it in React, I really enjoyed the challenge and thank you Hubtec for the opportunity.
+
+Regarding the decisions, I followed a basic idea of simply each user being able to register their tasks, and tell the status of it, the plan itself, I followed the cards I created in the GitHub project, link during the course of the README, in the commits section .
 <hr/>
 <h3>System Dependencies</h3>
 <hr/>
-
 * Docker (https://www.docker.com/)
 * Docker-compose
 
@@ -73,9 +77,12 @@ docker-compose run --rm app bundle exec rspec
 
 <a href="https://www.linkedin.com/in/tony-matheus-55909313b">My LinkedIn</a>
 
+<a href="https://gitlab.com/Tony_matheus">My GitLab</a>
+
+<a href="">My GitHub</a>
+
 <hr/>
 <h5>Commits Structure and decisions</h5>
-
 was been created a project in GitHub, with task management, with the follow structure:
 
 ```
