@@ -114,8 +114,7 @@ export function logout(){
                 window.location.replace(BASE_FRONT_URL+"/auth/sign-in")
             })
             .catch((error) => {
-                window.Materialize.toast('User or password incorrect', 4000, 'red');
-                console.log(error)
+                window.location.replace("http://localhost:3001/auth/sign-in");
             })
     }
 }

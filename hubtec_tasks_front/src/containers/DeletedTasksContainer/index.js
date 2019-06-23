@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {recycle_task, true_delete_task} from "./actions";
+import {logout} from "../Auth/actions";
 import {Row} from 'react-materialize';
 import DeletedList from "../../components/Task/DeletedList";
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +14,12 @@ class DeletedTasksContainer extends React.Component{
         super();
         this.recycle_task = this.recycle_task.bind(this);
         this.true_delete_task = this.true_delete_task.bind(this);
+        this.logout = this.logout.bind(this);
+    };
+
+    logout = event =>
+    {
+        this.props.logout()
     };
 
     recycle_task(task){
@@ -55,7 +62,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({recycle_task, true_delete_task }, dispatch)
+    return bindActionCreators({recycle_task, true_delete_task, logout }, dispatch)
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(DeletedTasksContainer)
