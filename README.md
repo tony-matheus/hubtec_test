@@ -79,7 +79,7 @@ docker-compose run --rm app bundle exec rspec
 
 <a href="https://gitlab.com/Tony_matheus">My GitLab</a>
 
-<a href="">My GitHub</a>
+<a href="https://github.com/tony-matheus">My GitHub</a>
 
 <hr/>
 <h5>Commits Structure and decisions</h5>
