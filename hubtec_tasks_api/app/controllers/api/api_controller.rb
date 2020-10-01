@@ -1,4 +1,4 @@
 module Api
-  class ApiController < ApplicationControllerd
+  class ApiController < ApplicationController
   end
 end

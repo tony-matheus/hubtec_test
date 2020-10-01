@@ -10,8 +10,13 @@ export default function(state = initialState, action) {
         case DELETE_DONE:
             return state.filter(done => done.id !== action.payload);
         case ADD_DONE:
+
             console.log(state);
             console.log(action.payload);
+            const exist = state.filter( item => item.id === action.payload.id)
+            if(exist.length > 0) {
+                return state
+            }
             return [action.payload, ...state]
         default:
             return state;

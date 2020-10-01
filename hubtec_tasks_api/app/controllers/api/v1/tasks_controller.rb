@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+require_relative('../../../facade/task_facade.rb')
 module Api::V1
   class TasksController < Api::ApiController
     before_action :authenticate_user!
@@ -5,7 +7,9 @@ module Api::V1
     before_action :set_task_destroyed, only: %i[recycle delete]
 
     def index
-      render json: Task.find_user_tasks(current_user.id)
+      task_facade = TaskFacade.new(current_user)
+      render json: task_facade.find_user_tasks()
+      # render json: Task.find_user_tasks(current_user.id)
     end
 
     def create

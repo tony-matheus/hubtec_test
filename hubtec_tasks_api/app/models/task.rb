@@ -17,29 +17,29 @@
               update(deleted_at: nil)
             end
 
-            def self.find_user_tasks(user_id)
-              {
-                  to_do: self.find_to_do(user_id),
-                  in_progress: self.find_in_progress(user_id),
-                  done: self.find_done(user_id)
-              }
-            end
+            # def self.find_user_tasks(user_id)
+            #   {
+            #       to_do: self.find_to_do(user_id),
+            #       in_progress: self.find_in_progress(user_id),
+            #       done: self.find_done(user_id)
+            #   }
+            # end
 
-            def self.find_to_do(user_id)
-              self.where('status = ? AND user_id = ?', 0, user_id)
-            end
+            # def self.find_to_do(user_id)
+            #   self.where('status = ? AND user_id = ?', 0, user_id)
+            # end
 
-            def self.find_in_progress(user_id)
-              self.where('status = ? AND user_id = ?', 1, user_id)
-            end
+            # def self.find_in_progress(user_id)
+            #   self.where('status = ? AND user_id = ?', 1, user_id)
+            # end
 
-            def self.find_done(user_id)
-              self.where('status = ? AND user_id = ?', 2, user_id)
-            end
+            # def self.find_done(user_id)
+            #   self.where('status = ? AND user_id = ?', 2, user_id)
+            # end
 
-            def self.find_deleted_tasks(user_id)
-              self.unscope(:where).where('user_id = ?', user_id).where.not(deleted_at: nil)
-            end
+            # def self.find_deleted_tasks(user_id)
+            #   self.unscope(:where).where('user_id = ?', user_id).where.not(deleted_at: nil)
+            # end
 
             private
 
